@@ -40,7 +40,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * the start of the line.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTask.java,v 1.2 2004/03/16 02:04:01 mike Exp $
+ * @version $Id: SqlScriptMigrationTask.java,v 1.3 2004/03/19 21:45:45 scott Exp $
  */
 public class SqlScriptMigrationTask extends MigrationTaskSupport
 {
@@ -126,9 +126,9 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
             
             if (e instanceof SQLException)
             {
-                if (((SQLException)e).getNextException() != null)
+                if (((SQLException) e).getNextException() != null)
                 {
-                    log.error("Chained SQL Exception", ((SQLException)e).getNextException());
+                    log.error("Chained SQL Exception", ((SQLException) e).getNextException());
                 }
             }
             
