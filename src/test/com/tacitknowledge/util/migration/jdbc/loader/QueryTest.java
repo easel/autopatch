@@ -26,11 +26,14 @@ import junit.framework.TestCase;
  * created
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: QueryTest.java,v 1.2 2004/11/05 19:48:33 scott Exp $
+ * @version $Id: QueryTest.java,v 1.3 2004/11/05 20:01:51 scott Exp $
  */
 public class QueryTest extends TestCase
 {
-    protected TestLoader loader = null;
+    /**
+     * The dummy loader used for testing
+     */
+    private TestLoader loader = null;
     
     /**
      * Constructor that invokes its parent's constructor
@@ -58,8 +61,8 @@ public class QueryTest extends TestCase
     {
         loader.setName("mocktable_db.dat");
         String sql = loader.getStatmentSql();
-        String answer 
-        	= "INSERT INTO mocktable (col1, col2, col3, col4) VALUES (?, ?, ?, ?)";
+        String answer = "INSERT INTO mocktable (col1, col2, col3, col4) "
+            + "VALUES (?, ?, ?, ?)";
         assertTrue(answer.equals(sql));
     }
     
@@ -68,18 +71,30 @@ public class QueryTest extends TestCase
      */
     private class TestLoader extends DelimitedFileLoader
     {
+        /**
+         * The name of the file
+         */
         private String name = null;
-        
+
+        /**
+         * @see com.tacitknowledge.util.migration.MigrationTask#getName()
+         */
         public String getName()
         {
             return name;
         }
-        
+
+        /**
+         * @see com.tacitknowledge.util.migration.MigrationTaskSupport#setName(java.lang.String)
+         */
         public void setName(String name)
         {
             this.name = name;
         }
-        
+
+        /**
+         * @see com.tacitknowledge.util.migration.jdbc.loader.DelimitedFileLoader#getDelimiter()
+         */
         public String getDelimiter()
         {
             return "|";
@@ -96,7 +111,10 @@ public class QueryTest extends TestCase
         {
             return "col1|col2|col3|col4";
         }
-        
+       
+        /**
+         * @see com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask#getResourceAsStream()
+         */
         protected InputStream getResourceAsStream()
         {
             return null;

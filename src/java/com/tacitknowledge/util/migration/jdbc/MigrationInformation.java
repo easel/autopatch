@@ -42,7 +42,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: MigrationInformation.java,v 1.3 2004/11/05 19:44:42 scott Exp $
+ * @version $Id: MigrationInformation.java,v 1.4 2004/11/05 20:01:50 scott Exp $
  * @see     com.tacitknowledge.util.migration.Migration
  */
 public class MigrationInformation
@@ -74,9 +74,11 @@ public class MigrationInformation
         try
         {
             MigrationLauncher launcher = new MigrationLauncher(systemName);
-            log.info("Current Database patch level is:          " + launcher.getDatabasePatchLevel());
-            log.info("Current number of unapplied patches is:   " + 
-                     ((launcher.getNextPatchLevel() - launcher.getDatabasePatchLevel()) - 1));
+            log.info("Current Database patch level is:          "
+                    + launcher.getDatabasePatchLevel());
+            int unappliedPatches = launcher.getNextPatchLevel()
+                - launcher.getDatabasePatchLevel() - 1;
+            log.info("Current number of unapplied patches is:   " + unappliedPatches); 
             log.info("The next patch to author should be:       " + launcher.getNextPatchLevel());
         }
         catch (Exception e)

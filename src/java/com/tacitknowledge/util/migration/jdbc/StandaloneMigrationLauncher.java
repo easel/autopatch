@@ -30,7 +30,7 @@ import org.apache.commons.logging.LogFactory;
  * Below is an example of how this class can be configured in build.xml:
  * <pre>
  *   ...
- *  &lt;target name="patch.database" description="Runs the migration system and patches the database"&gt;
+ *  &lt;target name="patch.database" description="Runs the migration system"&gt;
  *   &lt;java 
  *       fork="true"
  *       classpathref="patch.classpath" 
@@ -43,7 +43,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: StandaloneMigrationLauncher.java,v 1.2 2004/10/08 00:32:51 chrisa Exp $
+ * @version $Id: StandaloneMigrationLauncher.java,v 1.3 2004/11/05 20:01:50 scott Exp $
  * @see     com.tacitknowledge.util.migration.Migration
  */
 public class StandaloneMigrationLauncher
