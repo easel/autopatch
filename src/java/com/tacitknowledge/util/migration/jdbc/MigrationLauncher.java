@@ -34,7 +34,7 @@ import com.tacitknowledge.util.migration.MigrationTask;
  * This class is <b>NOT</b> threadsafe.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationLauncher.java,v 1.3 2004/03/19 19:36:46 scott Exp $
+ * @version $Id: MigrationLauncher.java,v 1.4 2004/03/31 22:31:31 mike Exp $
  */
 public class MigrationLauncher implements MigrationListener
 {
@@ -171,6 +171,29 @@ public class MigrationLauncher implements MigrationListener
     }
 
     /**
+     * Get the patch level from the database
+     *
+     * @return int representing the current database patch level
+     * @exception SQLException if there is a database connection error, 
+     *                         or the patch level can't be determined
+     */
+    public int getDatabasePatchLevel() throws SQLException
+    {
+        return table.getPatchLevel(getConnection(table.getSystemName()));
+    }
+    
+    /**
+     * Get the next patch level, for use when creating a new patch
+     *
+     * @return int representing the first unused patch number
+     * @exception MigrationException if the next patch level can't be determined
+     */
+    public int getNextPatchLevel() throws MigrationException
+    {
+        return manager.getNextPatchLevel();
+    }
+    
+    /**
      * Starts the application migration process.
      * 
      * @param  conn the connection to use
@@ -224,7 +247,7 @@ public class MigrationLauncher implements MigrationListener
     /**
      * Returns the database connection for this system.
      * 
-     * @param  systemName the name of the system being patches
+     * @param  systemName the name of the system being patched
      * @return the database connection to use during migration
      * @throws SQLException if an unrecoverable error occured while creating
      *         the database connection
