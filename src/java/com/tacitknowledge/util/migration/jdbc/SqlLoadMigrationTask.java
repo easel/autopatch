@@ -34,7 +34,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * Base class used for creating bulk data loading <code>MigrationTask</code>s.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlLoadMigrationTask.java,v 1.7 2004/11/05 20:01:50 scott Exp $
+ * @version $Id: SqlLoadMigrationTask.java,v 1.8 2004/11/09 18:34:30 chrisa Exp $
  */
 public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
 {
@@ -138,7 +138,7 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
      * @return the data to load as a list of rows
      * @throws IOException if the input stream could not be read
      */
-    private List getData(InputStream is) throws IOException
+    protected List getData(InputStream is) throws IOException
     {
         List data = new ArrayList();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
