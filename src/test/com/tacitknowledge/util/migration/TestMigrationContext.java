@@ -15,15 +15,14 @@ package com.tacitknowledge.util.migration;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
-import com.tacitknowledge.util.migration.MigrationContext;
-import com.tacitknowledge.util.migration.MigrationException;
 
 /**
  * Extends <code>MigrationContext</code> by adding a log of test executions.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: TestMigrationContext.java,v 1.1 2004/03/15 07:42:20 scott Exp $
+ * @version $Id: TestMigrationContext.java,v 1.2 2004/03/15 16:24:39 scott Exp $
  */
 public class TestMigrationContext implements MigrationContext
 {
@@ -65,5 +64,13 @@ public class TestMigrationContext implements MigrationContext
      */
     public void rollback() throws MigrationException
     {
+    }
+
+    /**
+     * @see com.tacitknowledge.util.migration.MigrationContext#getConfiguration()
+     */
+    public Properties getConfiguration()
+    {
+        return new Properties();
     }
 }

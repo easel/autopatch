@@ -14,9 +14,14 @@
 package com.tacitknowledge.util.migration.jdbc;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,7 +30,7 @@ import org.apache.commons.logging.LogFactory;
  * Utility class for dealing with JDBC.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlUtil.java,v 1.1 2004/03/15 07:42:24 scott Exp $
+ * @version $Id: SqlUtil.java,v 1.2 2004/03/15 16:24:39 scott Exp $
  */
 final class SqlUtil
 {
@@ -86,5 +91,39 @@ final class SqlUtil
                 log.error("Error closing Connection", e);
             }
         }
+    }
+
+    /**
+     * Returns a connection from the <code>DataSource</code> located in JNDI
+     * under the specified name. 
+     * 
+     * @param  dsn the name of the DataSource in JDNI
+     * @return a connection from the <code>DataSource</code>
+     * @throws NamingException if the datasource could not be found in JNDI
+     * @throws SQLException if a connnection could not be made to the database
+     */
+    public static Connection getConnection(String dsn) throws NamingException, SQLException
+    {
+        InitialContext context = new InitialContext();
+        DataSource ds = (DataSource) context.lookup(dsn);
+        return ds.getConnection();
+    }
+    
+    /**
+     * Established and returns a connection based on the specified parameters. 
+     * 
+     * @param  driver the JDBC driver to use
+     * @param  url the database URL
+     * @param  user the username
+     * @param  pass the password
+     * @return a JDBC connection
+     * @throws ClassNotFoundException if the driver could not be loaded
+     * @throws SQLException if a connnection could not be made to the database
+     */
+    public static Connection getConnection(String driver, String url, String user,
+        String pass) throws ClassNotFoundException, SQLException
+    {
+        Class.forName(driver);
+        return DriverManager.getConnection(url, user, pass);
     }
 }

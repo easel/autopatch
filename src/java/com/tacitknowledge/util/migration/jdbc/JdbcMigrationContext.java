@@ -17,8 +17,11 @@
 
 package com.tacitknowledge.util.migration.jdbc;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import com.tacitknowledge.util.migration.MigrationContext;
 import com.tacitknowledge.util.migration.MigrationException;
@@ -27,7 +30,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * Provides JDBC resources to migration tasks. 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationContext.java,v 1.1 2004/03/15 07:42:24 scott Exp $
+ * @version $Id: JdbcMigrationContext.java,v 1.2 2004/03/15 16:24:39 scott Exp $
  */
 public class JdbcMigrationContext implements MigrationContext
 {
@@ -35,6 +38,34 @@ public class JdbcMigrationContext implements MigrationContext
      * The database connection to use
      */
     private Connection connection = null;
+    
+    /**
+     * System migration config
+     */
+    private Properties properties = new Properties();
+    
+    /**
+     * Constructs a new <code>JdbcMigrationContext</code>.
+     * 
+     * @throws MigrationException if the migration.properties file could not
+     *         be read
+     */
+    public JdbcMigrationContext() throws MigrationException
+    {
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+        InputStream is = cl.getResourceAsStream("/" + MIGRATION_CONFIG_FILE);
+        if (is != null)
+        {
+            try
+            {
+                properties.load(is);
+            }
+            catch (IOException e)
+            {
+                throw new MigrationException("Error reading in migration properties file", e);
+            }
+        }
+    }
     
     /**
      * Returns the database connection to use
@@ -84,5 +115,13 @@ public class JdbcMigrationContext implements MigrationContext
         {
             throw new MigrationException("Could not rollback SQL transaction", e);
         }
+    }
+
+    /**
+     * @see MigrationContext#getConfiguration()
+     */
+    public Properties getConfiguration()
+    {
+        return properties;
     }
 }

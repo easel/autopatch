@@ -13,14 +13,21 @@
 
 package com.tacitknowledge.util.migration;
 
+import java.util.Properties;
+
 /**
  * Provides system resources to migration tasks. 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationContext.java,v 1.1 2004/03/15 07:42:21 scott Exp $
+ * @version $Id: MigrationContext.java,v 1.2 2004/03/15 16:24:38 scott Exp $
  */
 public interface MigrationContext
 {
+    /**
+     * The name of the migration configuration file
+     */
+    public static final String MIGRATION_CONFIG_FILE = "migration.properties";
+
     /**
      * Commits the current migration transaction.
      * 
@@ -36,4 +43,11 @@ public interface MigrationContext
      *         the transaction
      */
     public void rollback() throws MigrationException;
+    
+    /**
+     * Returns the configuration for the system migration.
+     * 
+     * @return the configuration for the system migration
+     */
+    public Properties getConfiguration();
 }
