@@ -43,7 +43,7 @@ import com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask;
  * through n) will be mapped to.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: DelimitedFileLoader.java,v 1.5 2004/11/11 22:16:43 mike Exp $
+ * @version $Id: DelimitedFileLoader.java,v 1.6 2004/11/19 02:05:45 chrisa Exp $
  */
 public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
 {
@@ -196,26 +196,8 @@ public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
      */
     protected InputStream getResourceAsStream()
     {
-        InputStream stream = getClass().getResourceAsStream(getName());
-        if (stream == null)
-        {
-            stream = ClassLoader.getSystemResourceAsStream(getName());
-            
-        }
-        if (stream == null)
-        {
-            File f = new File(getName());
-            try
-            {
-                stream = new FileInputStream(f);
-            } 
-            catch (FileNotFoundException e)
-            {
-                log.error("The file: " + getName() + " was not found.", e);
-                throw new IllegalArgumentException("Must have a valid file name.");
-            }
-        }
-        return stream;
+        FileLoadingUtility utility = new FileLoadingUtility(getName());
+        return utility.getResourceAsStream();
     }
     
     /**
