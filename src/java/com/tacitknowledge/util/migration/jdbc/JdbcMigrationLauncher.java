@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.1 2005/02/21 21:55:33 scott Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.2 2005/02/24 00:34:10 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -251,36 +251,45 @@ public class JdbcMigrationLauncher implements MigrationListener
         conn.commit();
         
         // Turn off auto-commit
-        boolean b = conn.getAutoCommit();
-        conn.setAutoCommit(false);
-        
-        // Patch locks ensure that only one system sharing a database will patch
-        // it at the same time.
-        waitForFreeLock(conn);
-        
+        boolean b = true;
         try
         {
-            patchTable.lockPatchTable();
-            
-            int patchLevel = patchTable.getPatchLevel();
+            b = conn.getAutoCommit();
+            conn.setAutoCommit(false);
         
-            // Make sure this class is notified when a patch is applied so that
-            // the patch level can be updated (see #migrationSuccessful).
-            migrationProcess.addListener(this);
+            // Patch locks ensure that only one system sharing a database will patch
+            // it at the same time.
+            waitForFreeLock(conn);
+        
+            try
+            {
+                patchTable.lockPatchTable();
             
-            return migrationProcess.doMigrations(patchLevel, context);
+                int patchLevel = patchTable.getPatchLevel();
+        
+                // Make sure this class is notified when a patch is applied so that
+                // the patch level can be updated (see #migrationSuccessful).
+                migrationProcess.addListener(this);
+            
+                return migrationProcess.doMigrations(patchLevel, context);
+            }
+            finally
+            {
+                try
+                {
+                    patchTable.unlockPatchTable();
+                    conn.commit();
+                }
+                catch (SQLException e)
+                {
+                    log.error("Error unlocking patch table: ", e);
+                }
+            }
         }
         finally
         {
-            try
-            {
-                patchTable.unlockPatchTable();
-                conn.commit();
-            }
-            catch (SQLException e)
-            {
-                log.error("Error unlocking patch table: ", e);
-            }
+            // restore auto-commit setting
+            conn.setAutoCommit(b);
         }
     }
     
