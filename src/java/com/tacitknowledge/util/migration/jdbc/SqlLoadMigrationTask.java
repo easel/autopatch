@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * Base class used for creating bulk data loading <code>MigrationTask</code>s.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlLoadMigrationTask.java,v 1.1 2004/03/15 07:42:24 scott Exp $
+ * @version $Id: SqlLoadMigrationTask.java,v 1.2 2004/03/16 02:04:01 mike Exp $
  */
 public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
 {
@@ -76,8 +77,15 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
         }
         catch (Exception e)
         {
-            log.error(getName() + ": Error running SQL \""
-                + getStatmentSql() + "\"", e);
+            log.error(getName() + ": Error running SQL \"" + getStatmentSql() + "\"", e);
+            if (e instanceof SQLException)
+            {
+                if (((SQLException)e).getNextException() != null)
+                {
+                    log.error("Chained SQL Exception", ((SQLException)e).getNextException());
+                }
+            }
+            
             throw new MigrationException(e);
         }
     }

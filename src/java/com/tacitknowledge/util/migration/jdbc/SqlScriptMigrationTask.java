@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.SQLException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -39,7 +40,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * the start of the line.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTask.java,v 1.1 2004/03/15 07:42:24 scott Exp $
+ * @version $Id: SqlScriptMigrationTask.java,v 1.2 2004/03/16 02:04:01 mike Exp $
  */
 public class SqlScriptMigrationTask extends MigrationTaskSupport
 {
@@ -122,6 +123,15 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
         catch (Exception e)
         {
             log.error(getName() + ": Error running SQL \"" + sql + "\"", e);
+            
+            if (e instanceof SQLException)
+            {
+                if (((SQLException)e).getNextException() != null)
+                {
+                    log.error("Chained SQL Exception", ((SQLException)e).getNextException());
+                }
+            }
+            
             throw new MigrationException(e);
         }
         finally
