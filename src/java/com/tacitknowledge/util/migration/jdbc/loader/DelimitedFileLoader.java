@@ -43,7 +43,7 @@ import com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask;
  * through n) will be mapped to.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: DelimitedFileLoader.java,v 1.4 2004/11/05 20:01:51 scott Exp $
+ * @version $Id: DelimitedFileLoader.java,v 1.5 2004/11/11 22:16:43 mike Exp $
  */
 public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
 {
@@ -118,8 +118,8 @@ public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
     
     /**
      * Returns the table name from the full path name 
-     * by parsing it out of a file in the format: 
-     * name_db.(some extension)
+     * by parsing it out of a file in the format
+     * name_db<period>(some extension)
      * 
      * @return the name of the table to add data to
      */
