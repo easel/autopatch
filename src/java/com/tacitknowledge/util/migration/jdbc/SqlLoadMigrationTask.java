@@ -34,14 +34,14 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * Base class used for creating bulk data loading <code>MigrationTask</code>s.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlLoadMigrationTask.java,v 1.3 2004/03/19 21:45:45 scott Exp $
+ * @version $Id: SqlLoadMigrationTask.java,v 1.4 2004/10/08 00:32:51 chrisa Exp $
  */
 public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
 {
     /**
      * Class logger
      */
-    private static Log log = LogFactory.getLog(SqlLoadMigrationTask.class);
+    protected static Log log = LogFactory.getLog(SqlLoadMigrationTask.class);
     
     /**
      * Creates a new <code>SqlScriptMigrationTask</code>.
@@ -104,6 +104,7 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
      * 
      * @param  data the current row of data to load
      * @param  stmt the statement used for inserting data into the DB
+     * 
      * @throws Exception if an unexpected error occurs
      */    
     protected abstract void insert(String data, PreparedStatement stmt) throws Exception;

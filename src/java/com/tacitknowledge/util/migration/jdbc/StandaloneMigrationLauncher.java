@@ -18,10 +18,6 @@ import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.tacitknowledge.util.migration.MigrationException;
-import com.tacitknowledge.util.ClasspathUtils;
-import com.tacitknowledge.util.discovery.ArchiveResourceListSource;
-import com.tacitknowledge.util.discovery.ClassDiscoveryUtil;
 
 /**
  * Launches the migration process as a standalone application.  
@@ -47,7 +43,7 @@ import com.tacitknowledge.util.discovery.ClassDiscoveryUtil;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: StandaloneMigrationLauncher.java,v 1.1 2004/03/31 22:31:31 mike Exp $
+ * @version $Id: StandaloneMigrationLauncher.java,v 1.2 2004/10/08 00:32:51 chrisa Exp $
  * @see     com.tacitknowledge.util.migration.Migration
  */
 public class StandaloneMigrationLauncher
