@@ -34,7 +34,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * Base class used for creating bulk data loading <code>MigrationTask</code>s.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlLoadMigrationTask.java,v 1.5 2004/11/03 19:43:44 chrisa Exp $
+ * @version $Id: SqlLoadMigrationTask.java,v 1.6 2004/11/03 20:04:58 chrisa Exp $
  */
 public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
 {
@@ -77,6 +77,7 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
 	                }
                 }
             }
+            stmt.executeBatch();
         }
         catch (Exception e)
         {
