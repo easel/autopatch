@@ -23,7 +23,7 @@ import junit.framework.TestCase;
  * parsed.
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: NameParseTest.java,v 1.2 2004/11/05 20:01:51 scott Exp $
+ * @version $Id: NameParseTest.java,v 1.3 2005/02/21 21:44:21 scott Exp $
  */
 public class NameParseTest extends TestCase
 {
@@ -61,7 +61,7 @@ public class NameParseTest extends TestCase
             + DelimitedFileLoader.PATH_SEPARATOR + "child-dir"
             + DelimitedFileLoader.PATH_SEPARATOR + "table_db20040704.load";
         String medName = DelimitedFileLoader.PATH_SEPARATOR + "table_db20040704.load";
-        String names[] = {"table_db.dat", longName, medName};
+        String[] names = {"table_db.dat", longName, medName};
         for (int i = 0; i < names.length; i++)
         {
             loader.setName(names[i]);
