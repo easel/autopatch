@@ -14,10 +14,10 @@
 package com.tacitknowledge.util.migration;
 
 /**
- * Convience base class for migration tasks.
+ * Convenience base class for migration tasks.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationTaskSupport.java,v 1.1 2004/03/15 07:42:21 scott Exp $
+ * @version $Id: MigrationTaskSupport.java,v 1.2 2004/03/15 19:57:20 mike Exp $
  */
 public abstract class MigrationTaskSupport implements MigrationTask
 {

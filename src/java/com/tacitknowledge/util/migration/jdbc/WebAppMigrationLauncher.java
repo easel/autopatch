@@ -54,7 +54,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * </pre> 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: WebAppMigrationLauncher.java,v 1.2 2004/03/15 16:24:39 scott Exp $
+ * @version $Id: WebAppMigrationLauncher.java,v 1.3 2004/03/15 19:57:21 mike Exp $
  * @see     com.tacitknowledge.util.migration.Migration
  */
 public class WebAppMigrationLauncher implements ServletContextListener
@@ -75,9 +75,8 @@ public class WebAppMigrationLauncher implements ServletContextListener
      */
     public void contextInitialized(ServletContextEvent sce)
     {
-        // The WEB-INF/classes directory isn't in the classpath defined by
-        // System.getProperty("java.class.path"); add it to the search path
-        // here
+        // WEB-INF/classes and WEB-INF/lib aren't in the classpath defined by
+        // System.getProperty("java.class.path"); add it to the search path here
         if (firstRun)
         { 
             ClassDiscoveryUtil.addResourceListSource(
@@ -99,7 +98,7 @@ public class WebAppMigrationLauncher implements ServletContextListener
         {
             // Runtime exceptions coming from a ServletContextListener prevent the
             // application from being deployed.  In this case, the intention is
-            // for migration-enable applications to fail-fast if there are any
+            // for migration-enabled applications to fail-fast if there are any
             // errors during migration.
             throw new RuntimeException("Migration exception caught during migration", e);
         }
