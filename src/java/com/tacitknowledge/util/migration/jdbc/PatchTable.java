@@ -64,7 +64,7 @@ import org.apache.commons.logging.LogFactory;
  * class as needed.  This class does not explictly commit or rollback transactions.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: PatchTable.java,v 1.3 2004/03/15 23:44:32 scott Exp $
+ * @version $Id: PatchTable.java,v 1.4 2004/04/05 23:13:27 mike Exp $
  */
 public class PatchTable
 {
@@ -327,10 +327,10 @@ public class PatchTable
         ResultSet rs = null;
         try
         {
-            log.info("Create patch record for " + systemName);
             stmt = conn.prepareStatement(getSql("level.create"));
             stmt.setString(1, systemName);
             stmt.execute();
+            log.info("Created patch record for " + systemName);
         }
         catch (SQLException e)
         {
@@ -361,7 +361,7 @@ public class PatchTable
             stmt = conn.prepareStatement(getSql(sqlkey));
             if (log.isDebugEnabled())
             {
-                log.fatal("Updating patch table lock: " + getSql(sqlkey));
+                log.debug("Updating patch table lock: " + getSql(sqlkey));
             }
             stmt.setString(1, systemName);
             stmt.execute();
