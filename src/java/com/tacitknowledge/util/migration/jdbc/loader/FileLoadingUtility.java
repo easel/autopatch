@@ -30,7 +30,7 @@ import org.apache.commons.logging.LogFactory;
  * absolute path if provided.
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: FileLoadingUtility.java,v 1.1 2004/11/19 02:05:45 chrisa Exp $
+ * @version $Id: FileLoadingUtility.java,v 1.2 2005/02/21 21:55:34 scott Exp $
  */
 public class FileLoadingUtility
 {
@@ -39,8 +39,16 @@ public class FileLoadingUtility
      */
     private static Log log = LogFactory.getLog(FileLoadingUtility.class);
     
+    /**
+     * The name of the file to load
+     */
     private String fileName = null;
     
+    /**
+     * Creates a new <code>FileLoadingUtility</code>.
+     * 
+     * @param fileName the name of the file to load
+     */
     public FileLoadingUtility(String fileName)
     {
         this.fileName = fileName;

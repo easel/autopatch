@@ -21,14 +21,14 @@ import junit.framework.TestCase;
  * 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationTest.java,v 1.2 2004/03/15 16:22:56 scott Exp $
+ * @version $Id: MigrationTest.java,v 1.3 2005/02/21 21:55:36 scott Exp $
  */
 public class MigrationTest extends TestCase
 {
     /**
      * The class under test
      */
-    private Migration runner = null;
+    private MigrationProcess runner = null;
     
     /**
      * Test migration context
@@ -51,7 +51,7 @@ public class MigrationTest extends TestCase
     protected void setUp() throws Exception
     {
         super.setUp();
-        runner = new Migration();
+        runner = new MigrationProcess();
         runner.addResourcePackage(getClass().getPackage().getName());
         
         context = new TestMigrationContext();

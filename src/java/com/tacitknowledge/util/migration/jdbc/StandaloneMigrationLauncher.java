@@ -1,4 +1,4 @@
-/* Copyright 2004 Tacit Knowledge LLC
+/* Copyright 2005 Tacit Knowledge LLC
  * 
  * Licensed under the Tacit Knowledge Open License, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License. You may
@@ -43,8 +43,8 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: StandaloneMigrationLauncher.java,v 1.4 2005/02/15 21:53:10 scott Exp $
- * @see     com.tacitknowledge.util.migration.Migration
+ * @version $Id: StandaloneMigrationLauncher.java,v 1.5 2005/02/21 21:55:33 scott Exp $
+ * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class StandaloneMigrationLauncher
 {
@@ -74,9 +74,9 @@ public class StandaloneMigrationLauncher
         // task is executed, the patch level is incremented, etc.
         try
         {
-            JdbcMigrationContext context = new JdbcMigrationContext();
-            context.loadFromMigrationProperties();
-            MigrationLauncher launcher = new MigrationLauncher(context, systemName);
+            JdbcMigrationLauncherFactory launcherFactory = new JdbcMigrationLauncherFactory();
+            JdbcMigrationLauncher launcher
+                = launcherFactory.createMigrationLauncher(systemName);
             launcher.doMigrations();
         }
         catch (Exception e)

@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.tacitknowledge.util.migration.jdbc;
+package com.tacitknowledge.util.migration.jdbc.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,9 +30,9 @@ import org.apache.commons.logging.LogFactory;
  * Utility class for dealing with JDBC.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlUtil.java,v 1.2 2004/03/15 16:24:39 scott Exp $
+ * @version $Id: SqlUtil.java,v 1.1 2005/02/21 21:55:34 scott Exp $
  */
-final class SqlUtil
+public final class SqlUtil
 {
     /**
      * Class logger

@@ -17,9 +17,6 @@
 package com.tacitknowledge.util.migration.jdbc.loader;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,7 +40,7 @@ import com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask;
  * through n) will be mapped to.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: DelimitedFileLoader.java,v 1.6 2004/11/19 02:05:45 chrisa Exp $
+ * @version $Id: DelimitedFileLoader.java,v 1.7 2005/02/21 21:55:34 scott Exp $
  */
 public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
 {

@@ -1,4 +1,4 @@
-/* Copyright 2004 Tacit Knowledge LLC
+/* Copyright 2005 Tacit Knowledge LLC
  * 
  * Licensed under the Tacit Knowledge Open License, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License. You may
@@ -54,8 +54,8 @@ import com.tacitknowledge.util.migration.MigrationException;
  * </pre> 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: WebAppMigrationLauncher.java,v 1.6 2005/02/15 21:53:10 scott Exp $
- * @see     com.tacitknowledge.util.migration.Migration
+ * @version $Id: WebAppMigrationLauncher.java,v 1.7 2005/02/21 21:55:33 scott Exp $
+ * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class WebAppMigrationLauncher implements ServletContextListener
 {
@@ -78,8 +78,8 @@ public class WebAppMigrationLauncher implements ServletContextListener
         try
         {
 
-            // WEB-INF/classes and WEB-INF/lib aren't in the classpath defined by
-            // System.getProperty("java.class.path"); add it to the search path here
+            // WEB-INF/classes and WEB-INF/lib are not in the system classpath (as defined by
+            // System.getProperty("java.class.path")); add it to the search path here
             if (firstRun)
             {
                 ClassDiscoveryUtil.addResourceListSource(
@@ -94,9 +94,9 @@ public class WebAppMigrationLauncher implements ServletContextListener
             // task is executed, the patch level is incremented, etc.
             try
             {
-                JdbcMigrationContext context = new JdbcMigrationContext();
-                context.loadFromMigrationProperties();
-                MigrationLauncher launcher = new MigrationLauncher(context, systemName);
+                JdbcMigrationLauncherFactory launcherFactory = new JdbcMigrationLauncherFactory();
+                JdbcMigrationLauncher launcher
+                    = launcherFactory.createMigrationLauncher(systemName);
                 launcher.doMigrations();
             }
             catch (MigrationException e)

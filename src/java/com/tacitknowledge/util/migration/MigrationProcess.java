@@ -59,9 +59,9 @@ import org.apache.commons.logging.LogFactory;
  *    }
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: Migration.java,v 1.2 2004/03/15 16:22:57 scott Exp $
+ * @version $Id: MigrationProcess.java,v 1.1 2005/02/21 21:55:35 scott Exp $
  */
-public class Migration
+public class MigrationProcess
 {
     /**
      * The regular expression used to match SQL patch files.
@@ -71,7 +71,7 @@ public class Migration
     /**
      * Class logger
      */
-    private static Log log = LogFactory.getLog(Migration.class);
+    private static Log log = LogFactory.getLog(MigrationProcess.class);
     
     /**
      * The list of package names containing the <code>MigrationTask</code>s
@@ -92,7 +92,7 @@ public class Migration
     /**
      * Creates a new <code>Migration</code> instance.
      */
-    public Migration()
+    public MigrationProcess()
     {
         addMigrationTaskSource(new ClassMigrationTaskSource());
     }
