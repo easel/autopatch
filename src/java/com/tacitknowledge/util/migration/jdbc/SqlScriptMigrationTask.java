@@ -40,7 +40,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * the start of the line.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTask.java,v 1.3 2004/03/19 21:45:45 scott Exp $
+ * @version $Id: SqlScriptMigrationTask.java,v 1.4 2004/06/08 03:10:42 mike Exp $
  */
 public class SqlScriptMigrationTask extends MigrationTaskSupport
 {
@@ -80,6 +80,9 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
     /**
      * Creates a new <code>SqlScriptMigrationTask</code> containing the SQL
      * contained in the given <code>InputStream</code>.
+     * <P>
+     * FIXME currently buffers the entire SQL into RAM on
+     * instantiation. This won't scale across a large number of SQL statements.
      *
      * @param  name the name of the SQL script to execute; this is just an
      *         identifier and does not have to correspond to a file name 

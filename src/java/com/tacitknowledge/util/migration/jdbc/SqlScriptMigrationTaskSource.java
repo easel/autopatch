@@ -31,7 +31,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSource;
  * of each script must follow the pattern of &quot;patch(\d+)(_.+)?\.sql&quot;.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTaskSource.java,v 1.1 2004/03/15 07:42:24 scott Exp $
+ * @version $Id: SqlScriptMigrationTaskSource.java,v 1.2 2004/06/08 03:10:42 mike Exp $
  */
 public class SqlScriptMigrationTaskSource implements MigrationTaskSource
 {
@@ -81,8 +81,13 @@ public class SqlScriptMigrationTaskSource implements MigrationTaskSource
                     }
                     int order = Integer.parseInt(matcher.group(1));
                     
+                    // We should send in the script file location so
+                    // it doesn't have to buffer the whole thing into RAM
                     SqlScriptMigrationTask task
                         = new SqlScriptMigrationTask(scriptFileName, order, is);
+
+                    // Free the resource
+                    is.close();
                     task.setName(scriptFileName);
                     tasks.add(task);
                 }

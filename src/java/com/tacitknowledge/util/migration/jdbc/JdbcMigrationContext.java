@@ -30,7 +30,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * Provides JDBC resources to migration tasks. 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationContext.java,v 1.3 2004/03/31 22:30:44 mike Exp $
+ * @version $Id: JdbcMigrationContext.java,v 1.4 2004/06/08 03:10:42 mike Exp $
  */
 public class JdbcMigrationContext implements MigrationContext
 {
@@ -63,6 +63,17 @@ public class JdbcMigrationContext implements MigrationContext
             catch (IOException e)
             {
                 throw new MigrationException("Error reading in migration properties file", e);
+            }
+            finally
+            {
+                try
+                {
+                    is.close();
+                }
+                catch (IOException ioe)
+                {
+                    throw new MigrationException("Error closing migration properties file", ioe);
+                }
             }
         }
         else

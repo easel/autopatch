@@ -64,7 +64,7 @@ import org.apache.commons.logging.LogFactory;
  * class as needed.  This class does not explictly commit or rollback transactions.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: PatchTable.java,v 1.4 2004/04/05 23:13:27 mike Exp $
+ * @version $Id: PatchTable.java,v 1.5 2004/06/08 03:10:42 mike Exp $
  */
 public class PatchTable
 {
@@ -398,6 +398,18 @@ public class PatchTable
             log.error("Couldn't find resource '" + filename + "'");
             return null;
         }
+        finally
+        {
+            try
+            {
+                is.close();
+            }
+            catch (IOException ioe)
+            {
+                log.error("Couldn't close properties file", ioe);
+            }
+        }
+        
         return p;
     }
 
