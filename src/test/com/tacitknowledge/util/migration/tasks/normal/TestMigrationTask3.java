@@ -11,13 +11,17 @@
  * limitations under the License.
  */
 
-package com.tacitknowledge.util.migration;
+package com.tacitknowledge.util.migration.tasks.normal;
+
+import com.tacitknowledge.util.migration.MigrationContext;
+import com.tacitknowledge.util.migration.MigrationException;
+import com.tacitknowledge.util.migration.tasks.BaseTestMigrationTask;
 
 /**
  * Basic test migration task.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: TestMigrationTask3.java,v 1.2 2004/03/15 16:22:56 scott Exp $
+ * @version $Id: TestMigrationTask3.java,v 1.1 2005/02/22 19:35:12 mike Exp $
  */
 public class TestMigrationTask3 extends BaseTestMigrationTask
 {
