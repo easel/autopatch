@@ -46,7 +46,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: MigrationInformation.java,v 1.1 2004/03/31 22:31:31 mike Exp $
+ * @version $Id: MigrationInformation.java,v 1.2 2004/10/07 22:28:48 mike Exp $
  * @see     com.tacitknowledge.util.migration.Migration
  */
 public class MigrationInformation
@@ -78,8 +78,10 @@ public class MigrationInformation
         try
         {
             MigrationLauncher launcher = new MigrationLauncher(systemName);
-            log.info("Current Database patch level is: " + launcher.getDatabasePatchLevel());
-            log.info("Next available patch level is:   " + launcher.getNextPatchLevel());
+            log.info("Current Database patch level is:          " + launcher.getDatabasePatchLevel());
+            log.info("Current number of unapplied patches is:   " + 
+                     ((launcher.getNextPatchLevel() - launcher.getDatabasePatchLevel()) - 1));
+            log.info("The next patch to author should be:       " + launcher.getNextPatchLevel());
         }
         catch (Exception e)
         {
