@@ -30,7 +30,7 @@ import org.apache.commons.logging.LogFactory;
  * Utility class for dealing with JDBC.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlUtil.java,v 1.1 2005/02/21 21:55:34 scott Exp $
+ * @version $Id: SqlUtil.java,v 1.2 2005/02/22 22:57:25 mike Exp $
  */
 public final class SqlUtil
 {
@@ -120,8 +120,8 @@ public final class SqlUtil
      * @throws ClassNotFoundException if the driver could not be loaded
      * @throws SQLException if a connnection could not be made to the database
      */
-    public static Connection getConnection(String driver, String url, String user,
-        String pass) throws ClassNotFoundException, SQLException
+    public static Connection getConnection(String driver, String url, String user, String pass) 
+        throws ClassNotFoundException, SQLException
     {
         Class.forName(driver);
         return DriverManager.getConnection(url, user, pass);

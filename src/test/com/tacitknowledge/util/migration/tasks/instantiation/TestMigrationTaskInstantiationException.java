@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id: TestMigrationTaskInstantiationException.java,v 1.1 2005/02/22 19:35:12 mike Exp $
+ * $Id: TestMigrationTaskInstantiationException.java,v 1.2 2005/02/22 22:57:25 mike Exp $
  */
 package com.tacitknowledge.util.migration.tasks.instantiation;
 
@@ -28,7 +28,7 @@ public class TestMigrationTaskInstantiationException extends BaseTestMigrationTa
      * 
      * @exception RuntimeException when instantiated
      */
-    public TestMigrationTaskInstantiationException()
+    public TestMigrationTaskInstantiationException() throws RuntimeException
     {
         super("TestMigrationTaskInstantiationException", 1);
         throw new RuntimeException("This class always throws exceptions when instantiated");
