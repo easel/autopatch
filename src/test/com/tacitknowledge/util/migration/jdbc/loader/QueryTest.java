@@ -16,12 +16,8 @@
  */
 package com.tacitknowledge.util.migration.jdbc.loader;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -30,7 +26,7 @@ import junit.framework.TestCase;
  * created
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: QueryTest.java,v 1.1 2004/10/08 00:32:51 chrisa Exp $
+ * @version $Id: QueryTest.java,v 1.2 2004/11/05 19:48:33 scott Exp $
  */
 public class QueryTest extends TestCase
 {
