@@ -19,7 +19,7 @@ import com.tacitknowledge.util.migration.tasks.BaseTestMigrationTask;
  * Basic test migration task.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: TestMigrationTask2.java,v 1.1 2005/02/22 19:35:12 mike Exp $
+ * @version $Id: TestMigrationTask2.java,v 1.2 2005/02/24 00:57:04 mike Exp $
  */
 public class TestMigrationTask2 extends BaseTestMigrationTask
 {
@@ -37,7 +37,7 @@ public class TestMigrationTask2 extends BaseTestMigrationTask
     }
     
     /**
-     * @see com.tacitknowledge.util.sqlmigration.MigrationTaskSupport#getLevel()
+     * @see com.tacitknowledge.util.migration.MigrationTaskSupport#getLevel()
      */
     public Integer getLevel()
     {

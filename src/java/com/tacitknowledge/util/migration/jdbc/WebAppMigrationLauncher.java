@@ -54,7 +54,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * </pre> 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: WebAppMigrationLauncher.java,v 1.8 2005/02/22 18:58:46 mike Exp $
+ * @version $Id: WebAppMigrationLauncher.java,v 1.9 2005/02/24 00:57:04 mike Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class WebAppMigrationLauncher implements ServletContextListener
@@ -129,7 +129,7 @@ public class WebAppMigrationLauncher implements ServletContextListener
      */
     public void contextDestroyed(ServletContextEvent sce)
     {
-        // Ain't got nothin' to do.
+        log.debug("context is being destroyed " + sce);
     }
     
     /**
