@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.3 2005/02/24 00:57:04 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.4 2005/02/24 01:07:38 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -187,7 +187,7 @@ public class JdbcMigrationLauncher implements MigrationListener
     public void migrationFailed(MigrationTask task, MigrationContext ctx, MigrationException e)
         throws MigrationException
     {
-        log.debug("Task " + task.getName() + " failed for context " + ctx);
+        log.debug("Task " + task.getName() + " failed for context " + ctx, e);
     }
 
     /**

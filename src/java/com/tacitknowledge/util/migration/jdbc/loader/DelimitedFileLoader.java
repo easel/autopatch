@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ import com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask;
  * through n) will be mapped to.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: DelimitedFileLoader.java,v 1.9 2005/02/24 00:57:05 mike Exp $
+ * @version $Id: DelimitedFileLoader.java,v 1.10 2005/02/24 01:07:38 mike Exp $
  */
 public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
 {
@@ -51,7 +52,7 @@ public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
     /**
      * The path separator
      */
-    public static final String PATH_SEPARATOR = System.getProperty("file.separator");
+    public static final String PATH_SEPARATOR = File.separator;
     
     /**
      * Private variable that indicates if the header has been parsed or not. 
