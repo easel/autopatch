@@ -59,7 +59,7 @@ import org.apache.commons.logging.LogFactory;
  *    }
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationProcess.java,v 1.2 2005/02/22 18:58:45 mike Exp $
+ * @version $Id: MigrationProcess.java,v 1.3 2005/02/22 20:13:15 mike Exp $
  */
 public class MigrationProcess
 {
@@ -137,8 +137,7 @@ public class MigrationProcess
      * Applies necessary patches to the system.
      * 
      * @param  currentLevel the current system patch level
-     * @param  context information and resources that are available to the
-     *         migration tasks
+     * @param  context information and resources that are available to the migration tasks
      * @throws MigrationException if the migration fails
      * @return the number of <code>MigrationTask</code>s that have executed
      */
@@ -150,7 +149,6 @@ public class MigrationProcess
         validateTasks(migrations);
         Collections.sort(migrations);
         int taskCount = 0;
-        int endingPatchLevel = currentLevel;
         
         for (Iterator i = migrations.iterator(); i.hasNext();)
         {
@@ -185,7 +183,6 @@ public class MigrationProcess
                     throw e;
                 }
                 taskCount++;
-                endingPatchLevel = task.getLevel().intValue();
             }
         }
         
