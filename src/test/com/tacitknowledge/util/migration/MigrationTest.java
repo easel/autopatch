@@ -17,13 +17,11 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import com.mockrunner.mock.jdbc.MockConnection;
-
 /**
  * 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationTest.java,v 1.1 2004/03/15 07:42:20 scott Exp $
+ * @version $Id: MigrationTest.java,v 1.2 2004/03/15 16:22:56 scott Exp $
  */
 public class MigrationTest extends TestCase
 {

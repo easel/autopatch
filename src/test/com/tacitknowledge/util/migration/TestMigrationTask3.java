@@ -13,14 +13,11 @@
 
 package com.tacitknowledge.util.migration;
 
-import com.tacitknowledge.util.migration.MigrationContext;
-import com.tacitknowledge.util.migration.MigrationException;
-
 /**
  * Basic test migration task.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: TestMigrationTask3.java,v 1.1 2004/03/15 07:42:20 scott Exp $
+ * @version $Id: TestMigrationTask3.java,v 1.2 2004/03/15 16:22:56 scott Exp $
  */
 public class TestMigrationTask3 extends BaseTestMigrationTask
 {

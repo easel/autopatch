@@ -23,13 +23,13 @@ import com.tacitknowledge.util.discovery.ClassDiscoveryUtil;
  * <code>MigrationTask</code> in a specific package.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: ClassMigrationTaskSource.java,v 1.1 2004/03/15 07:42:21 scott Exp $
+ * @version $Id: ClassMigrationTaskSource.java,v 1.2 2004/03/15 16:22:57 scott Exp $
  */
 public class ClassMigrationTaskSource implements MigrationTaskSource
 {
 
     /**
-     * @see com.tacitknowledge.util.migration.MigrationTaskSource#getMigrationTasks(java.lang.String)
+     * @see MigrationTaskSource#getMigrationTasks(String)
      */
     public List getMigrationTasks(String packageName) throws MigrationException
     {

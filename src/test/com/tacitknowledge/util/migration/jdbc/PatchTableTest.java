@@ -13,7 +13,6 @@
 
 package com.tacitknowledge.util.migration.jdbc;
 
-import java.sql.Date;
 import java.sql.SQLException;
 
 import junit.framework.AssertionFailedError;
@@ -28,7 +27,7 @@ import com.mockrunner.mock.jdbc.MockResultSet;
  * mock JDBC driver. 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: PatchTableTest.java,v 1.1 2004/03/15 07:42:25 scott Exp $
+ * @version $Id: PatchTableTest.java,v 1.2 2004/03/15 16:22:57 scott Exp $
  */
 public class PatchTableTest extends JDBCTestCaseAdapter
 {
