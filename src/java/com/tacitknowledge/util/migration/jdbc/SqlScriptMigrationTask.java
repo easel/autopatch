@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * Adaptss a SQL or DDL database patch for use with the AutoPatch framework.  
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTask.java,v 1.7 2005/02/22 20:25:23 mike Exp $
+ * @version $Id: SqlScriptMigrationTask.java,v 1.8 2005/02/22 22:23:23 mike Exp $
  */
 public class SqlScriptMigrationTask extends MigrationTaskSupport
 {
@@ -202,6 +202,10 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
                         {
                             statements.add(currentStatement.toString().trim());
                             currentStatement = new StringBuffer();
+                        }
+                        else
+                        {
+                            currentStatement.append(sqlChars[i]);
                         }
                         break;
                     default :
