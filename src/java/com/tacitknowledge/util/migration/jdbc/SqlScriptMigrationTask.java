@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * Adaptss a SQL or DDL database patch for use with the AutoPatch framework.  
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTask.java,v 1.5 2005/02/21 21:55:33 scott Exp $
+ * @version $Id: SqlScriptMigrationTask.java,v 1.6 2005/02/22 18:58:46 mike Exp $
  */
 public class SqlScriptMigrationTask extends MigrationTaskSupport
 {
@@ -76,9 +76,6 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
     /**
      * Creates a new <code>SqlScriptMigrationTask</code> containing the SQL
      * contained in the given <code>InputStream</code>.
-     * <P>
-     * FIXME currently buffers the entire SQL into RAM on
-     * instantiation. This won't scale across a large number of SQL statements.
      *
      * @param  name the name of the SQL script to execute; this is just an
      *         identifier and does not have to correspond to a file name 

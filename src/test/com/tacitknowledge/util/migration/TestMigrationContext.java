@@ -22,7 +22,7 @@ import java.util.Properties;
  * Extends <code>MigrationContext</code> by adding a log of test executions.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: TestMigrationContext.java,v 1.2 2004/03/15 16:24:39 scott Exp $
+ * @version $Id: TestMigrationContext.java,v 1.3 2005/02/22 18:58:46 mike Exp $
  */
 public class TestMigrationContext implements MigrationContext
 {
@@ -57,6 +57,7 @@ public class TestMigrationContext implements MigrationContext
      */
     public void commit() throws MigrationException
     {
+        // does nothing
     }
 
     /**
@@ -64,6 +65,7 @@ public class TestMigrationContext implements MigrationContext
      */
     public void rollback() throws MigrationException
     {
+        // does nothing
     }
 
     /**

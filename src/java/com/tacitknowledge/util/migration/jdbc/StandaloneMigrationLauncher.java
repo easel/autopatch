@@ -43,7 +43,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: StandaloneMigrationLauncher.java,v 1.5 2005/02/21 21:55:33 scott Exp $
+ * @version $Id: StandaloneMigrationLauncher.java,v 1.6 2005/02/22 18:58:46 mike Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class StandaloneMigrationLauncher
@@ -57,7 +57,9 @@ public class StandaloneMigrationLauncher
      * Private constructor - this object shouldn't be instantiated
      */
     private StandaloneMigrationLauncher()
-    { }
+    { 
+        // does nothing
+    }
     
     /**
      * Run the migrations for the given system name

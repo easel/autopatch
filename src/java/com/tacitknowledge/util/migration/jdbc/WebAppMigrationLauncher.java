@@ -54,7 +54,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * </pre> 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: WebAppMigrationLauncher.java,v 1.7 2005/02/21 21:55:33 scott Exp $
+ * @version $Id: WebAppMigrationLauncher.java,v 1.8 2005/02/22 18:58:46 mike Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class WebAppMigrationLauncher implements ServletContextListener
@@ -114,6 +114,7 @@ public class WebAppMigrationLauncher implements ServletContextListener
             // as many places as possible - debugging migration
             // problems requires detection first, and that means
             // getting the word of failures out.
+            log.error(e);
             System.out.println(e.getMessage());
             e.printStackTrace(System.out);
             System.err.println(e.getMessage());

@@ -59,15 +59,10 @@ import org.apache.commons.logging.LogFactory;
  *    }
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationProcess.java,v 1.1 2005/02/21 21:55:35 scott Exp $
+ * @version $Id: MigrationProcess.java,v 1.2 2005/02/22 18:58:45 mike Exp $
  */
 public class MigrationProcess
 {
-    /**
-     * The regular expression used to match SQL patch files.
-     */
-    private static final String SQL_PATCH_REGEX = "^patch(\\d+)(_.+)?\\.sql";
-
     /**
      * Class logger
      */
@@ -304,7 +299,6 @@ public class MigrationProcess
      */
     private void validateTasks(List migrations) throws MigrationException
     {
-        // TODO: Ensure that patch levels are consecutive without breaks 
         Map usedOrderNumbers = new HashMap();
         for (Iterator i = migrations.iterator(); i.hasNext();)
         {

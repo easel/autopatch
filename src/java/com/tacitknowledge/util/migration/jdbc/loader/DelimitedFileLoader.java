@@ -24,7 +24,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.StringTokenizer;
 
 import org.apache.commons.logging.Log;
@@ -40,7 +39,7 @@ import com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask;
  * through n) will be mapped to.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: DelimitedFileLoader.java,v 1.7 2005/02/21 21:55:34 scott Exp $
+ * @version $Id: DelimitedFileLoader.java,v 1.8 2005/02/22 18:58:47 mike Exp $
  */
 public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
 {
@@ -206,7 +205,6 @@ public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
      */
     protected String getHeader(InputStream is) throws IOException
     {
-        List data = new ArrayList();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         return reader.readLine();   
     }

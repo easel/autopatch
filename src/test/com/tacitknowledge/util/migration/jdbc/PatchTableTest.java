@@ -28,7 +28,7 @@ import com.tacitknowledge.util.migration.jdbc.util.ConnectionWrapperDataSource;
  * mock JDBC driver. 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: PatchTableTest.java,v 1.3 2005/02/21 21:55:35 scott Exp $
+ * @version $Id: PatchTableTest.java,v 1.4 2005/02/22 18:58:45 mike Exp $
  */
 public class PatchTableTest extends JDBCTestCaseAdapter
 {
@@ -101,7 +101,6 @@ public class PatchTableTest extends JDBCTestCaseAdapter
     {
         // Test-specific setup
         PreparedStatementResultSetHandler h = conn.getPreparedStatementResultSetHandler();
-        MockResultSet rs = h.createResultSet();
         h.prepareThrowsSQLException(table.getSql("level.read"));
         
         table.createPatchesTableIfNeeded();
