@@ -40,7 +40,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: MigrationInformation.java,v 1.7 2005/02/22 18:58:46 mike Exp $
+ * @version $Id: MigrationInformation.java,v 1.8 2005/02/22 22:56:59 mike Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class MigrationInformation
@@ -59,14 +59,25 @@ public class MigrationInformation
     }
     
     /**
-     * Run the migrations for the given system name
+     * Get the migration level information for the given system name
      *
      * @param arguments the command line arguments, if any (none are used)
      * @exception Exception if anything goes wrong
      */
     public static void main(String[] arguments) throws Exception
     {
-        String systemName = System.getProperty("migration.systemname");
+        MigrationInformation info = new MigrationInformation();
+        info.getMigrationInformation(System.getProperty("migration.systemname"));
+    }
+    
+    /**
+     * Get the migration level information for the given system name
+     * 
+     * @param systemName the name of the system
+     * @throws Exception if anything goes wrong
+     */
+    public void getMigrationInformation(String systemName) throws Exception
+    {
         if (systemName == null)
         {
             throw new IllegalArgumentException("The migration.systemname "
