@@ -39,7 +39,7 @@ import com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask;
  * through n) will be mapped to.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: DelimitedFileLoader.java,v 1.2 2004/11/03 19:43:45 chrisa Exp $
+ * @version $Id: DelimitedFileLoader.java,v 1.3 2004/11/03 21:28:32 chrisa Exp $
  */
 public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
 {
@@ -69,7 +69,8 @@ public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
     
     /**
      * Parses a line of data, and sets the prepared statement with the 
-     * values.  
+     * values.  If a token contains "<null>" then a null value is passed 
+     * in. 
      * 
      * @param data the tokenized string that is mapped to a row
      * @param stmt the statement to populate with data to be inserted
@@ -90,7 +91,14 @@ public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
         while (st.hasMoreTokens())
         {
             String colVal = st.nextToken();
-            stmt.setString(counter, colVal);
+            if (colVal.equalsIgnoreCase("<null>"))
+            {
+                stmt.setString(counter, null);
+            }
+            else
+            {
+                stmt.setString(counter, colVal);
+            }
             counter++;
         }
         return true;
