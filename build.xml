@@ -2,7 +2,7 @@
 
 <!--
     Tacit Knowledge Migrate
-    $Id: build.xml,v 1.10 2005/02/15 05:49:06 scott Exp $
+    $Id: build.xml,v 1.11 2005/02/15 21:53:10 scott Exp $
 -->
 
 <!-- 
@@ -34,7 +34,7 @@
   <property name="component.title"         value="Tacit Knowledge Migrate"/>
 
   <!-- The current version number of this application -->
-  <property name="component.version"       value="0.3.0"/>
+  <property name="component.version"       value="0.4.0"/>
 
   <!-- The base directory for compilation targets -->
   <property name="build.home"              value="build"/>

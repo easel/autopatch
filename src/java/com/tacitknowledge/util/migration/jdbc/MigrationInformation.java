@@ -42,7 +42,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: MigrationInformation.java,v 1.4 2004/11/05 20:01:50 scott Exp $
+ * @version $Id: MigrationInformation.java,v 1.5 2005/02/15 21:53:10 scott Exp $
  * @see     com.tacitknowledge.util.migration.Migration
  */
 public class MigrationInformation
@@ -73,7 +73,9 @@ public class MigrationInformation
         // task is executed, the patch level is incremented, etc.
         try
         {
-            MigrationLauncher launcher = new MigrationLauncher(systemName);
+            JdbcMigrationContext context = new JdbcMigrationContext();
+            context.loadFromMigrationProperties();
+            MigrationLauncher launcher = new MigrationLauncher(context, systemName);
             log.info("Current Database patch level is:          "
                     + launcher.getDatabasePatchLevel());
             int unappliedPatches = launcher.getNextPatchLevel()
