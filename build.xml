@@ -2,7 +2,7 @@
 
 <!--
     Tacit Knowledge Migrate
-    $Id: build.xml,v 1.5 2004/03/31 22:31:58 mike Exp $
+    $Id: build.xml,v 1.6 2004/05/21 01:11:19 mike Exp $
 -->
 
 <!-- 
@@ -221,6 +221,8 @@
     <copy     todir="${dist.home}/src" filtering="on">
       <fileset  dir="${basedir}/src"/>
     </copy>
+    <copy todir="${dist.home}/docs" file="${basedir}/README"/>
+    <copy todir="${dist.home}/docs" file="${basedir}/migration.properties"/>
     <jar jarfile="${build.home}/tk-${component.name}-${component.version}-src.jar"
          basedir="${basedir}/dist">
     </jar>
