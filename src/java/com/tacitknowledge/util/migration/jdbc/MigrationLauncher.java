@@ -34,7 +34,7 @@ import com.tacitknowledge.util.migration.MigrationTask;
  * This class is <b>NOT</b> threadsafe.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationLauncher.java,v 1.2 2004/03/15 16:24:39 scott Exp $
+ * @version $Id: MigrationLauncher.java,v 1.3 2004/03/19 19:36:46 scott Exp $
  */
 public class MigrationLauncher implements MigrationListener
 {
@@ -278,7 +278,7 @@ public class MigrationLauncher implements MigrationListener
             }
             catch (InterruptedException e)
             {
-                log.error("Recieved InterruptedException while waiting for patch lock", e);
+                log.error("Received InterruptedException while waiting for patch lock", e);
             }
         }
     }
