@@ -52,8 +52,7 @@ import org.apache.commons.logging.LogFactory;
  *    <li>level.create - Inserts a new patch level record for the system</li>
  *    <li>level.read - Returns the current patch level of the system</li>
  *    <li>level.update - Updates the current patch level of the system</li>
- *    <li>lock.read - Returns one row if the system patch lock is in use, or
- *        zero rows if it is free</li>
+ *    <li>lock.read - Returns 'T' if the system patch lock is in use, 'F' otherwise</li>
  *    <li>lock.obtain - Obtains the patch lock for the system</li>
  *    <li>lock.release - Releases the patch lock for the system</li>
  * </ul>
@@ -65,7 +64,7 @@ import org.apache.commons.logging.LogFactory;
  * class as needed.  This class does not explictly commit or rollback transactions.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: PatchTable.java,v 1.1 2004/03/15 07:42:24 scott Exp $
+ * @version $Id: PatchTable.java,v 1.2 2004/03/15 23:08:57 scott Exp $
  */
 public class PatchTable
 {
