@@ -34,7 +34,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * Base class used for creating bulk data loading <code>MigrationTask</code>s.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlLoadMigrationTask.java,v 1.4 2004/10/08 00:32:51 chrisa Exp $
+ * @version $Id: SqlLoadMigrationTask.java,v 1.5 2004/11/03 19:43:44 chrisa Exp $
  */
 public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
 {
@@ -67,11 +67,14 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
             for (int i = 0; i < rowCount; i++)
             {
                 String data = (String) rows.get(i);
-                insert(data, stmt);
-                stmt.addBatch();
-                if (i % 50 == 0)
+                boolean loadRowFlag = insert(data, stmt);
+                if (loadRowFlag)
                 {
-                    stmt.executeBatch();
+	                stmt.addBatch();
+	                if (i % 50 == 0)
+	                {
+	                    stmt.executeBatch();
+	                }
                 }
             }
         }
@@ -105,9 +108,10 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
      * @param  data the current row of data to load
      * @param  stmt the statement used for inserting data into the DB
      * 
+     * @return false if you do not want this row loaded, true otherwise
      * @throws Exception if an unexpected error occurs
      */    
-    protected abstract void insert(String data, PreparedStatement stmt) throws Exception;
+    protected abstract boolean insert(String data, PreparedStatement stmt) throws Exception;
     
     /**
      * Returns the <code>PreparedStatement</code> SQL used for inserting rows

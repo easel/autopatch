@@ -39,7 +39,7 @@ import com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask;
  * through n) will be mapped to.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: DelimitedFileLoader.java,v 1.1 2004/10/08 00:32:52 chrisa Exp $
+ * @version $Id: DelimitedFileLoader.java,v 1.2 2004/11/03 19:43:45 chrisa Exp $
  */
 public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
 {
@@ -73,22 +73,27 @@ public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
      * 
      * @param data the tokenized string that is mapped to a row
      * @param stmt the statement to populate with data to be inserted
+     * 
+     * @return false if the header is returned, true otherwise
      */
-    protected void insert(String data, PreparedStatement stmt) throws Exception
+    protected boolean insert(String data, PreparedStatement stmt) throws Exception
     {
         if(!parsedHeader)
         {
             parsedHeader = true;
-            return;
+            log.info("Header returned: " + data);
+            return false;
         }
         StringTokenizer st = new StringTokenizer(data, getDelimiter());
         int counter = 1;
+        log.info("Row being parsed: " + data);
         while (st.hasMoreTokens())
         {
             String colVal = st.nextToken();
             stmt.setString(counter, colVal);
             counter++;
         }
+        return true;
     }
     
     /**
