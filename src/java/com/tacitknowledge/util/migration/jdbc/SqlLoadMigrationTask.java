@@ -34,7 +34,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSupport;
  * Base class used for creating bulk data loading <code>MigrationTask</code>s.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlLoadMigrationTask.java,v 1.9 2005/02/21 21:55:33 scott Exp $
+ * @version $Id: SqlLoadMigrationTask.java,v 1.10 2005/02/22 20:25:23 mike Exp $
  */
 public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
 {
@@ -81,7 +81,8 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
         }
         catch (Exception e)
         {
-            log.error(getName() + ": Error running SQL \"" + getStatmentSql() + "\"", e);
+            String message = getName() + ": Error running SQL \"" + getStatmentSql() + "\"";
+            log.error(message, e);
             if (e instanceof SQLException)
             {
                 if (((SQLException) e).getNextException() != null)
@@ -90,7 +91,7 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
                 }
             }
             
-            throw new MigrationException(e);
+            throw new MigrationException(message, e);
         }
     }
     

@@ -17,32 +17,16 @@ package com.tacitknowledge.util.migration;
  * 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationException.java,v 1.1 2004/03/15 07:42:21 scott Exp $
+ * @version $Id: MigrationException.java,v 1.2 2005/02/22 20:25:23 mike Exp $
  */
 public class MigrationException extends Exception
 {
-    /**
-     * @see Exception#Exception() 
-     */
-    public MigrationException()
-    {
-        super();
-    }
-
     /**
      * @see Exception#Exception(String) 
      */
     public MigrationException(String message)
     {
         super(message);
-    }
-
-    /**
-     * @see Exception#Exception(Throwable) 
-     */
-    public MigrationException(Throwable cause)
-    {
-        super(cause);
     }
 
     /**

@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * Adaptss a SQL or DDL database patch for use with the AutoPatch framework.  
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTask.java,v 1.6 2005/02/22 18:58:46 mike Exp $
+ * @version $Id: SqlScriptMigrationTask.java,v 1.7 2005/02/22 20:25:23 mike Exp $
  */
 public class SqlScriptMigrationTask extends MigrationTaskSupport
 {
@@ -128,7 +128,8 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
         }
         catch (Exception e)
         {
-            log.error(getName() + ": Error running SQL \"" + sqlStatement + "\"", e);
+            String message = getName() + ": Error running SQL \"" + sqlStatement + "\"";
+            log.error(message, e);
             
             if (e instanceof SQLException)
             {
@@ -138,7 +139,7 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
                 }
             }
             
-            throw new MigrationException(e);
+            throw new MigrationException(message, e);
         }
         finally
         {
