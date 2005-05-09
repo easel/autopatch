@@ -40,19 +40,19 @@ import com.tacitknowledge.util.migration.jdbc.SqlLoadMigrationTask;
  * through n) will be mapped to.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: DelimitedFileLoader.java,v 1.10 2005/02/24 01:07:38 mike Exp $
+ * @version $Id: DelimitedFileLoader.java,v 1.11 2005/05/09 22:20:25 mike Exp $
  */
 public abstract class DelimitedFileLoader extends SqlLoadMigrationTask
 {
     /**
-     * Class logger
-     */
-    private static Log log = LogFactory.getLog(DelimitedFileLoader.class);
-    
-    /**
      * The path separator
      */
     public static final String PATH_SEPARATOR = File.separator;
+    
+    /**
+     * Class logger
+     */
+    private static Log log = LogFactory.getLog(DelimitedFileLoader.class);
     
     /**
      * Private variable that indicates if the header has been parsed or not. 
