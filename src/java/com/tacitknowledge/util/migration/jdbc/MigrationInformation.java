@@ -40,14 +40,12 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: MigrationInformation.java,v 1.8 2005/02/22 22:56:59 mike Exp $
+ * @version $Id: MigrationInformation.java,v 1.9 2005/05/10 01:13:41 mike Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class MigrationInformation
 {
-    /**
-     * Class logger
-     */
+    /** Class logger */
     private static Log log = LogFactory.getLog(MigrationInformation.class);
     
     /**

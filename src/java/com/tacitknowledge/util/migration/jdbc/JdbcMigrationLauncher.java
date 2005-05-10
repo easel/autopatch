@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.5 2005/03/24 08:37:12 alex Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.6 2005/05/10 01:13:41 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -71,6 +71,9 @@ public class JdbcMigrationLauncher implements MigrationListener
      */
     private JdbcMigrationContext context = null;
 
+    /**
+     * Create a new MigrationProcess and add a SqlScriptMigrationTaskSource
+     */
     public JdbcMigrationLauncher()
     {
         migrationProcess = new MigrationProcess();
@@ -224,9 +227,10 @@ public class JdbcMigrationLauncher implements MigrationListener
      * Sets the <code>JdbcMigrationContext</code> used for the migrations.
      *
      * @param jdbcMigrationContext the <code>JdbcMigrationContext</code> used for the migrations
-     * @throws MigrationException
+     * @throws MigrationException if a database connection cannot be obtained
      */
-    public void setJdbcMigrationContext(JdbcMigrationContext jdbcMigrationContext) throws MigrationException
+    public void setJdbcMigrationContext(JdbcMigrationContext jdbcMigrationContext) 
+        throws MigrationException
     {
         this.context = jdbcMigrationContext;
         // setting the context, mean we need to set patchTable
