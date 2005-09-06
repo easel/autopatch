@@ -2,7 +2,7 @@
 
 <!--
     Tacit Knowledge AutoPatch
-    $Id: build.xml,v 1.15 2005/05/10 01:56:13 mike Exp $
+    $Id: build.xml,v 1.16 2005/09/06 22:50:57 chrisa Exp $
 -->
 
 <!--
@@ -34,7 +34,7 @@
   <property name="component.title"         value="Tacit Knowledge AutoPatch"/>
 
   <!-- The current version number of this application -->
-  <property name="component.version"       value="0.6.2"/>
+  <property name="component.version"       value="0.6.3"/>
 
   <!-- The base directory for compilation targets -->
   <property name="build.home"              value="build"/>
