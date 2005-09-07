@@ -40,7 +40,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: MigrationInformation.java,v 1.9 2005/05/10 01:13:41 mike Exp $
+ * @version $Id: MigrationInformation.java,v 1.10 2005/09/07 22:20:34 chrisa Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class MigrationInformation
@@ -65,7 +65,15 @@ public class MigrationInformation
     public static void main(String[] arguments) throws Exception
     {
         MigrationInformation info = new MigrationInformation();
-        info.getMigrationInformation(System.getProperty("migration.systemname"));
+        String migrationName = System.getProperty("migration.systemname");
+        if (migrationName == null)
+        {
+            if ((arguments != null) && (arguments.length > 0))
+            {
+                migrationName = arguments[0].trim();
+            }
+        }
+        info.getMigrationInformation(migrationName);
     }
     
     /**
