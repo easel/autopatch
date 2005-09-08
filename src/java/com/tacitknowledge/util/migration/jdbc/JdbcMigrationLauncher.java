@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.6 2005/05/10 01:13:41 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.7 2005/09/08 00:16:51 chrisa Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -272,7 +272,10 @@ public class JdbcMigrationLauncher implements MigrationListener
 
         // Make sure the table is created first
         patchTable.getPatchLevel();
-        conn.commit();
+        if(!conn.getAutoCommit())
+        {
+            conn.commit();
+        }
 
         // Turn off auto-commit
         boolean b = true;
