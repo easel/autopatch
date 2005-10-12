@@ -60,7 +60,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre>
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationProcess.java,v 1.5 2005/05/10 01:39:32 mike Exp $
+ * @version $Id: MigrationProcess.java,v 1.6 2005/10/12 11:34:36 scott Exp $
  */
 public class MigrationProcess
 {
@@ -214,7 +214,20 @@ public class MigrationProcess
             for (Iterator j = migrationTaskSources.iterator(); j.hasNext();)
             {
                 MigrationTaskSource source = (MigrationTaskSource) j.next();
-                tasks.addAll(source.getMigrationTasks(packageName));
+                List sourceTasks = source.getMigrationTasks(packageName);
+                if (log.isDebugEnabled())
+                {
+                    if (sourceTasks.size() > 0)
+                    {
+                        log.debug("Source [" + source + "] found the following patches: "
+                                  + sourceTasks);
+                    }
+                    else
+                    {
+                        log.debug("Source [" + source + "] returned 0 patches.");
+                    }
+                }
+                tasks.addAll(sourceTasks);
             }
         }
         
