@@ -34,7 +34,7 @@ import com.tacitknowledge.util.migration.MigrationTaskSource;
  * of each script must follow the pattern of &quot;patch(\d+)(_.+)?\.sql&quot;.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTaskSource.java,v 1.5 2005/10/12 11:34:36 scott Exp $
+ * @version $Id: SqlScriptMigrationTaskSource.java,v 1.6 2005/11/11 18:50:14 scott Exp $
  */
 public class SqlScriptMigrationTaskSource implements MigrationTaskSource
 {
@@ -51,7 +51,7 @@ public class SqlScriptMigrationTaskSource implements MigrationTaskSource
      */
     public List getMigrationTasks(String packageName) throws MigrationException
     {
-        String path = packageName.replace('.', File.separatorChar);
+        String path = packageName.replace('.', '/');
         String[] scripts = ClassDiscoveryUtil.getResources(path, SQL_PATCH_REGEX);
         if (log.isDebugEnabled())
         {
