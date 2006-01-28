@@ -37,7 +37,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.14 2006/01/28 03:41:45 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.15 2006/01/28 03:46:46 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -273,7 +273,7 @@ public class JdbcMigrationLauncher implements MigrationListener
             // Patch locks ensure that only one system sharing a patch store will patch
             // it at the same time.
             boolean lockObtained = false;
-            while (lockObtained == false)
+            while (!lockObtained)
             {
                 waitForFreeLock();
 
@@ -284,7 +284,7 @@ public class JdbcMigrationLauncher implements MigrationListener
                 }
                 catch (IllegalStateException ise)
                 {
-                    // this happens when someone raced us to the lock and wone
+                    // this happens when someone raced us to the lock and won
                 }
             }
 
