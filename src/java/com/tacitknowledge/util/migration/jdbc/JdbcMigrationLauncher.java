@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.11 2006/01/28 01:47:23 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.12 2006/01/28 02:00:21 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -314,6 +314,9 @@ public class JdbcMigrationLauncher implements MigrationListener
     
     /**
      * create a patch table object for use in migrations
+     * 
+     * @param conn the database connection to use for table access
+     * @return PatchTable object for use in accessing patch state information
      */
     protected PatchTable createPatchTable(Connection conn)
     {
