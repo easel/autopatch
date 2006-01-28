@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.10 2006/01/28 00:57:11 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.11 2006/01/28 01:47:23 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -260,7 +260,7 @@ public class JdbcMigrationLauncher implements MigrationListener
      */
     private int doMigrations(Connection conn) throws SQLException, MigrationException
     {
-        patchTable = new PatchTable(context, conn);
+        patchTable = createPatchTable(conn);
 
         // Make sure the table is created first
         patchTable.getPatchLevel();
@@ -310,6 +310,14 @@ public class JdbcMigrationLauncher implements MigrationListener
             // restore auto-commit setting
             conn.setAutoCommit(b);
         }
+    }
+    
+    /**
+     * create a patch table object for use in migrations
+     */
+    protected PatchTable createPatchTable(Connection conn)
+    {
+        return new PatchTable(context, conn);
     }
 
     /**
