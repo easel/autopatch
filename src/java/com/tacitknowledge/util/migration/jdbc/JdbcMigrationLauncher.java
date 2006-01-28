@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.9 2006/01/28 00:41:12 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.10 2006/01/28 00:57:11 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -101,6 +101,11 @@ public class JdbcMigrationLauncher implements MigrationListener
      */
     public int doMigrations() throws MigrationException
     {
+        if (context == null)
+        {
+            throw new MigrationException("You must configure a migration context");
+        }
+        
         Connection conn = null;
         try
         {
