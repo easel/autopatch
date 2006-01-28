@@ -22,7 +22,7 @@ import com.tacitknowledge.util.migration.TestMigrationContext;
  * Base class for migration task tests. 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: BaseTestMigrationTask.java,v 1.1 2005/02/22 19:35:13 mike Exp $
+ * @version $Id: BaseTestMigrationTask.java,v 1.2 2006/01/28 01:21:38 mike Exp $
  */
 public abstract class BaseTestMigrationTask extends MigrationTaskSupport
 {
@@ -43,7 +43,10 @@ public abstract class BaseTestMigrationTask extends MigrationTaskSupport
      */
     public void migrate(MigrationContext context) throws MigrationException
     {
-        TestMigrationContext ctx = (TestMigrationContext) context;
-        ctx.recordExecution(getName());
+        if (context instanceof TestMigrationContext)
+        {
+            TestMigrationContext ctx = (TestMigrationContext) context;
+            ctx.recordExecution(getName());
+        }
     }
 }
