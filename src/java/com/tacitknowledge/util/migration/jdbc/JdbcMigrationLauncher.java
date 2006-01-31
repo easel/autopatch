@@ -25,7 +25,7 @@ import com.tacitknowledge.util.migration.MigrationException;
 import com.tacitknowledge.util.migration.MigrationListener;
 import com.tacitknowledge.util.migration.MigrationProcess;
 import com.tacitknowledge.util.migration.MigrationTask;
-import com.tacitknowledge.util.migration.PatchStore;
+import com.tacitknowledge.util.migration.PatchInfoStore;
 import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
 
 /**
@@ -37,7 +37,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.15 2006/01/28 03:46:46 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.16 2006/01/31 00:38:49 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -49,7 +49,7 @@ public class JdbcMigrationLauncher implements MigrationListener
     /**
      * The patch level store in use
      */
-    private PatchStore patchTable = null;
+    private PatchInfoStore patchTable = null;
 
     /**
      * The <code>MigrationProcess</code> responsible for applying the patches
@@ -324,7 +324,7 @@ public class JdbcMigrationLauncher implements MigrationListener
      * @param conn the database connection to use for table access
      * @return PatchTable object for use in accessing patch state information
      */
-    protected PatchStore createPatchStore(Connection conn)
+    protected PatchInfoStore createPatchStore(Connection conn)
     {
         return new PatchTable(context, conn);
     }
