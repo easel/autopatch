@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * Adaptss a SQL or DDL database patch for use with the AutoPatch framework.  
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTask.java,v 1.9 2006/05/26 09:02:37 mike Exp $
+ * @version $Id: SqlScriptMigrationTask.java,v 1.10 2006/05/26 09:07:06 mike Exp $
  */
 public class SqlScriptMigrationTask extends MigrationTaskSupport
 {
@@ -159,8 +159,6 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
     public List getSqlStatements(JdbcMigrationContext context)
     {
         List statements = new ArrayList();
-        log.info("database type is: " + context.getDatabaseType().getDatabaseType());
-        log.info("multiple statements: " + context.getDatabaseType().isMultipleStatementsSupported());
         if (context.getDatabaseType().isMultipleStatementsSupported())
         {
             statements.add(sql);
