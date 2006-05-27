@@ -43,7 +43,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: MigrationInformation.java,v 1.11 2006/05/26 04:28:58 mike Exp $
+ * @version $Id: MigrationInformation.java,v 1.12 2006/05/27 01:58:00 mike Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  * @see     com.tacitknowledge.util.migration.jdbc.JdbcMigrationLauncherFactory
  */
@@ -99,7 +99,8 @@ public class MigrationInformation
         // task is executed, the patch level is incremented, etc.
         try
         {
-            JdbcMigrationLauncherFactory launcherFactory = new JdbcMigrationLauncherFactory();
+            JdbcMigrationLauncherFactory launcherFactory = 
+                JdbcMigrationLauncherFactoryLoader.createFactory();
             JdbcMigrationLauncher launcher
                 = launcherFactory.createMigrationLauncher(systemName);
             log.info("Current Database patch level is        : "

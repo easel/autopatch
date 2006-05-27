@@ -37,7 +37,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * All properties listed above are required.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: WebAppJNDIMigrationLauncher.java,v 1.1 2005/09/13 01:21:59 chrisa Exp $
+ * @version $Id: WebAppJNDIMigrationLauncher.java,v 1.2 2006/05/27 01:58:00 mike Exp $
  */
 public class WebAppJNDIMigrationLauncher implements ServletContextListener
 {
@@ -74,7 +74,8 @@ public class WebAppJNDIMigrationLauncher implements ServletContextListener
             // task is executed, the patch level is incremented, etc.
             try
             {
-                JdbcMigrationLauncherFactory launcherFactory = new JdbcMigrationLauncherFactory();
+                JdbcMigrationLauncherFactory launcherFactory = 
+                    JdbcMigrationLauncherFactoryLoader.createFactory();
                 JdbcMigrationLauncher launcher
                     = launcherFactory.createMigrationLauncher(sce);
                 launcher.doMigrations();

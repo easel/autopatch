@@ -43,7 +43,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre> 
  * 
  * @author  Mike Hardy (mike@tacitknowledge.com)
- * @version $Id: StandaloneMigrationLauncher.java,v 1.7 2005/09/07 22:20:34 chrisa Exp $
+ * @version $Id: StandaloneMigrationLauncher.java,v 1.8 2006/05/27 01:58:00 mike Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class StandaloneMigrationLauncher
@@ -77,7 +77,8 @@ public class StandaloneMigrationLauncher
         // task is executed, the patch level is incremented, etc.
         try
         {
-            JdbcMigrationLauncherFactory launcherFactory = new JdbcMigrationLauncherFactory();
+            JdbcMigrationLauncherFactory launcherFactory = 
+                JdbcMigrationLauncherFactoryLoader.createFactory();
             JdbcMigrationLauncher launcher
                 = launcherFactory.createMigrationLauncher(systemName);
             launcher.doMigrations();

@@ -54,7 +54,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * </pre> 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: WebAppMigrationLauncher.java,v 1.9 2005/02/24 00:57:04 mike Exp $
+ * @version $Id: WebAppMigrationLauncher.java,v 1.10 2006/05/27 01:58:00 mike Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class WebAppMigrationLauncher implements ServletContextListener
@@ -94,7 +94,8 @@ public class WebAppMigrationLauncher implements ServletContextListener
             // task is executed, the patch level is incremented, etc.
             try
             {
-                JdbcMigrationLauncherFactory launcherFactory = new JdbcMigrationLauncherFactory();
+                JdbcMigrationLauncherFactory launcherFactory = 
+                    JdbcMigrationLauncherFactoryLoader.createFactory(); 
                 JdbcMigrationLauncher launcher
                     = launcherFactory.createMigrationLauncher(systemName);
                 launcher.doMigrations();
