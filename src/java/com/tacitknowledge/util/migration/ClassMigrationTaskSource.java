@@ -26,7 +26,7 @@ import com.tacitknowledge.util.discovery.ClassDiscoveryUtil;
  * <code>MigrationTask</code> in a specific package.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: ClassMigrationTaskSource.java,v 1.4 2005/05/10 01:39:32 mike Exp $
+ * @version $Id: ClassMigrationTaskSource.java,v 1.5 2006/05/29 09:14:24 mike Exp $
  */
 public class ClassMigrationTaskSource implements MigrationTaskSource
 {
@@ -65,7 +65,18 @@ public class ClassMigrationTaskSource implements MigrationTaskSource
             try
             {
                 Object o = taskClass.newInstance();
-                tasks.add(o);
+                
+                // It's not legal to have a null name.
+                MigrationTask task = (MigrationTask)o;
+                if (task.getName() != null) 
+                {
+                    tasks.add(o);
+                }
+                else
+                {
+                    log.debug("MigrationTask " + taskClass.getName() 
+                              + " had no migration name. Skipping");
+                }
             }
             catch (Exception e)
             {
