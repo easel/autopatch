@@ -19,10 +19,9 @@ import com.tacitknowledge.util.migration.tasks.normal.TestMigrationTask2;
 import com.tacitknowledge.util.migration.tasks.normal.TestMigrationTask3;
 
 /**
- * 
+ * Test basic migration functionality
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationTest.java,v 1.9 2006/05/29 11:57:40 mike Exp $
  */
 public class MigrationTest extends MigrationListenerTestBase
 {
