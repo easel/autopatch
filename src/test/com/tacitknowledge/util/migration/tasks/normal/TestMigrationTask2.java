@@ -19,21 +19,21 @@ import com.tacitknowledge.util.migration.tasks.BaseTestMigrationTask;
  * Basic test migration task.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: TestMigrationTask2.java,v 1.2 2005/02/24 00:57:04 mike Exp $
+ * @version $Id: TestMigrationTask2.java,v 1.3 2006/05/29 09:54:07 mike Exp $
  */
 public class TestMigrationTask2 extends BaseTestMigrationTask
 {
     /**
      * The patch level to use instead of '2'
      */
-    private static Integer patchLevelOverride = new Integer(2);
+    private static Integer patchLevelOverride = new Integer(5);
     
     /**
      * Creates a new <code>TestMigrationTask3</code>.
      */
     public TestMigrationTask2()
     {
-        super("TestTask2", 2);
+        super("TestTask2", 5);
     }
     
     /**
@@ -60,7 +60,7 @@ public class TestMigrationTask2 extends BaseTestMigrationTask
      */    
     public static void reset()
     {
-        patchLevelOverride = new Integer(2);
+        patchLevelOverride = new Integer(5);
     }
 
 }

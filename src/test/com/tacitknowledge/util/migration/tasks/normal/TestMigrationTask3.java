@@ -21,7 +21,7 @@ import com.tacitknowledge.util.migration.tasks.BaseTestMigrationTask;
  * Basic test migration task.
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: TestMigrationTask3.java,v 1.1 2005/02/22 19:35:12 mike Exp $
+ * @version $Id: TestMigrationTask3.java,v 1.2 2006/05/29 09:54:07 mike Exp $
  */
 public class TestMigrationTask3 extends BaseTestMigrationTask
 {
@@ -35,7 +35,7 @@ public class TestMigrationTask3 extends BaseTestMigrationTask
      */
     public TestMigrationTask3()
     {
-        super("TestTask3", 3);
+        super("TestTask3", 6);
     }
     
     /**
