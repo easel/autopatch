@@ -37,7 +37,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.18 2006/05/29 09:16:33 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.19 2006/05/29 11:57:40 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -78,6 +78,11 @@ public class JdbcMigrationLauncher implements MigrationListener
     public JdbcMigrationLauncher()
     {
         setMigrationProcess(new MigrationProcess());
+
+        // Make sure this class is notified when a patch is applied so that
+        // the patch level can be updated (see #migrationSuccessful).
+        migrationProcess.addListener(this);
+        
         getMigrationProcess().addMigrationTaskSource(new SqlScriptMigrationTaskSource());
     }
 
@@ -270,11 +275,6 @@ public class JdbcMigrationLauncher implements MigrationListener
             try
             {
                 int patchLevel = patchTable.getPatchLevel();
-
-                // Make sure this class is notified when a patch is applied so that
-                // the patch level can be updated (see #migrationSuccessful).
-                migrationProcess.addListener(this);
-
                 return migrationProcess.doMigrations(patchLevel, context);
             }
             finally

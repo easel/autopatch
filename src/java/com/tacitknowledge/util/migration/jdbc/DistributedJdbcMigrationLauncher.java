@@ -16,9 +16,6 @@ package com.tacitknowledge.util.migration.jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.tacitknowledge.util.migration.DistributedMigrationProcess;
 import com.tacitknowledge.util.migration.MigrationException;
 import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
@@ -32,13 +29,10 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: DistributedJdbcMigrationLauncher.java,v 1.2 2006/05/29 09:16:33 mike Exp $
+ * @version $Id: DistributedJdbcMigrationLauncher.java,v 1.3 2006/05/29 11:57:40 mike Exp $
  */
 public class DistributedJdbcMigrationLauncher extends JdbcMigrationLauncher
 {
-    /** Class logger */
-    private static Log log = LogFactory.getLog(DistributedJdbcMigrationLauncher.class);
-
     /**
      * Create a new MigrationProcess and add a SqlScriptMigrationTaskSource
      */
@@ -46,6 +40,10 @@ public class DistributedJdbcMigrationLauncher extends JdbcMigrationLauncher
     {
         super();
         setMigrationProcess(new DistributedMigrationProcess());
+
+        // Make sure this class is notified when a patch is applied so that
+        // the patch level can be updated (see #migrationSuccessful).
+        getMigrationProcess().addListener(this);
     }
     
     /**
@@ -58,6 +56,11 @@ public class DistributedJdbcMigrationLauncher extends JdbcMigrationLauncher
     {
         super(context);
         setMigrationProcess(new DistributedMigrationProcess());
+
+        // Make sure this class is notified when a patch is applied so that
+        // the patch level can be updated (see #migrationSuccessful).
+        getMigrationProcess().addListener(this);
+        
         setJdbcMigrationContext(context);
     }
     

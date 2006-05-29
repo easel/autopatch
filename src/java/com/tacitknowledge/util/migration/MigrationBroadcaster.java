@@ -22,7 +22,7 @@ import java.util.List;
  * <code>Migration</code> instance. 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationBroadcaster.java,v 1.1 2004/03/15 07:42:21 scott Exp $
+ * @version $Id: MigrationBroadcaster.java,v 1.2 2006/05/29 11:57:40 mike Exp $
  */
 class MigrationBroadcaster
 {
@@ -128,5 +128,15 @@ class MigrationBroadcaster
             throw new IllegalArgumentException("listener cannot be null");
         }
         return listeners.remove(listener);
+    }
+    
+    /**
+     * Get the list of listeners
+     * 
+     * @return List of MigrationListener objects
+     */
+    public List getListeners()
+    {
+        return listeners;
     }
 }
