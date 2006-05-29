@@ -60,7 +60,7 @@ import org.apache.commons.logging.LogFactory;
  * </pre>
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: MigrationProcess.java,v 1.7 2006/05/29 07:48:56 mike Exp $
+ * @version $Id: MigrationProcess.java,v 1.8 2006/05/29 09:16:33 mike Exp $
  */
 public class MigrationProcess
 {
@@ -230,7 +230,8 @@ public class MigrationProcess
                 {
                     if (sourceTasks.size() > 0)
                     {
-                        log.debug("Source [" + source + "] found the following patches: "
+                        log.debug("Source [" + source + "] found " 
+                                  + sourceTasks.size() + " patches: "
                                   + sourceTasks);
                     }
                     else
@@ -317,7 +318,7 @@ public class MigrationProcess
      * @param  migrations the list of defined migration tasks
      * @throws MigrationException if the migration tasks are not correctly defined
      */
-    private void validateTasks(List migrations) throws MigrationException
+    public void validateTasks(List migrations) throws MigrationException
     {
         Map usedOrderNumbers = new HashMap();
         for (Iterator i = migrations.iterator(); i.hasNext();)

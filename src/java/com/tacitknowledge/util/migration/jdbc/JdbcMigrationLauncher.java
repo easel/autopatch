@@ -37,7 +37,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: JdbcMigrationLauncher.java,v 1.17 2006/05/29 07:48:56 mike Exp $
+ * @version $Id: JdbcMigrationLauncher.java,v 1.18 2006/05/29 09:16:33 mike Exp $
  */
 public class JdbcMigrationLauncher implements MigrationListener
 {
@@ -252,7 +252,7 @@ public class JdbcMigrationLauncher implements MigrationListener
      * @throws MigrationException if an unrecoverable error occurs during
      *         the migration
      */
-    private int doMigrations(Connection conn) throws SQLException, MigrationException
+    protected int doMigrations(Connection conn) throws SQLException, MigrationException
     {
         patchTable = createPatchStore(conn);
 
@@ -260,7 +260,6 @@ public class JdbcMigrationLauncher implements MigrationListener
         boolean b = true;
         try
         {
-
             lockPatchStore();
 
             // make sure we can at least attempt to roll back patches

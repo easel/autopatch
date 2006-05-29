@@ -15,13 +15,12 @@ package com.tacitknowledge.util.migration.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.tacitknowledge.util.migration.DistributedMigrationProcess;
 import com.tacitknowledge.util.migration.MigrationException;
-import com.tacitknowledge.util.migration.MigrationProcess;
 import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
 
 /**
@@ -33,23 +32,20 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * This class is <b>NOT</b> threadsafe.
  *
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: DistributedJdbcMigrationLauncher.java,v 1.1 2006/05/29 07:48:56 mike Exp $
+ * @version $Id: DistributedJdbcMigrationLauncher.java,v 1.2 2006/05/29 09:16:33 mike Exp $
  */
 public class DistributedJdbcMigrationLauncher extends JdbcMigrationLauncher
 {
     /** Class logger */
     private static Log log = LogFactory.getLog(DistributedJdbcMigrationLauncher.class);
 
-    /** The JdbcMigrationLaunchers we are controlling */
-    private HashMap controlledSystems = new HashMap();
-
     /**
      * Create a new MigrationProcess and add a SqlScriptMigrationTaskSource
      */
     public DistributedJdbcMigrationLauncher()
     {
-        setMigrationProcess(new MigrationProcess());
-        getMigrationProcess().addMigrationTaskSource(new SqlScriptMigrationTaskSource());
+        super();
+        setMigrationProcess(new DistributedMigrationProcess());
     }
     
     /**
@@ -61,7 +57,18 @@ public class DistributedJdbcMigrationLauncher extends JdbcMigrationLauncher
     public DistributedJdbcMigrationLauncher(JdbcMigrationContext context) throws MigrationException
     {
         super(context);
+        setMigrationProcess(new DistributedMigrationProcess());
         setJdbcMigrationContext(context);
+    }
+    
+    /**
+     * Get all of the migrations from all of the controlled systems so that we can order them
+     * 
+     * @throws MigrationException if there are two patches in the same slot
+     */
+    public void initializeMigrations() throws MigrationException
+    {
+        throw new MigrationException("not implemented");
     }
 
     /**
@@ -82,7 +89,7 @@ public class DistributedJdbcMigrationLauncher extends JdbcMigrationLauncher
         try
         {
             conn = getContext().getConnection();
-            return -1; // FIXME
+            return super.doMigrations(conn);
         }
         catch (SQLException e)
         {
@@ -92,25 +99,5 @@ public class DistributedJdbcMigrationLauncher extends JdbcMigrationLauncher
         {
             SqlUtil.close(conn, null, null);
         }
-    }
-
-    /**
-     * Get the list of systems we are controlling
-     * 
-     * @return HashMap of JdbcMigrationLauncher objects keyed by String system names
-     */
-    public HashMap getControlledSystems()
-    {
-        return controlledSystems;
-    }
-
-    /**
-     * Set the list of systems to control
-     * 
-     * @param controlledSystems HashMap of JdbcMigrationLauncher objects keyed by String system names
-     */
-    public void setControlledSystems(HashMap controlledSystems)
-    {
-        this.controlledSystems = controlledSystems;
     }
 }
