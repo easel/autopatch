@@ -30,7 +30,6 @@ import org.apache.commons.logging.LogFactory;
  * absolute path if provided.
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: FileLoadingUtility.java,v 1.2 2005/02/21 21:55:34 scott Exp $
  */
 public class FileLoadingUtility
 {
