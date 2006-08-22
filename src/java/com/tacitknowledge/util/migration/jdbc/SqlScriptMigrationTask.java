@@ -36,7 +36,7 @@ import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
  * Adaptss a SQL or DDL database patch for use with the AutoPatch framework.  
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlScriptMigrationTask.java,v 1.13 2006/08/22 01:35:44 mike Exp $
+ * @version $Id: SqlScriptMigrationTask.java,v 1.14 2006/08/22 02:11:49 mike Exp $
  */
 public class SqlScriptMigrationTask extends MigrationTaskSupport
 {
@@ -203,6 +203,8 @@ public class SqlScriptMigrationTask extends MigrationTaskSupport
                             if (context.getDatabaseType().getDatabaseType().equals("oracle") &&
                                     (currentStatement.toString().trim()
                                         .toLowerCase().startsWith("create or replace method") ||
+                                     currentStatement.toString().trim()
+                                        .toLowerCase().startsWith("create or replace function") ||
                                      currentStatement.toString().trim()
                                         .toLowerCase().startsWith("create or replace procedure") ||
                                      currentStatement.toString().toString()
