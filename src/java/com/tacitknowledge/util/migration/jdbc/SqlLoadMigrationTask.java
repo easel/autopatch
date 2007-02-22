@@ -29,12 +29,13 @@ import org.apache.commons.logging.LogFactory;
 import com.tacitknowledge.util.migration.MigrationContext;
 import com.tacitknowledge.util.migration.MigrationException;
 import com.tacitknowledge.util.migration.MigrationTaskSupport;
+import com.tacitknowledge.util.migration.jdbc.util.SqlUtil;
 
 /**
  * Base class used for creating bulk data loading <code>MigrationTask</code>s.
  *  
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: SqlLoadMigrationTask.java,v 1.10 2005/02/22 20:25:23 mike Exp $
+ * @version $Id: SqlLoadMigrationTask.java,v 1.11 2007/02/22 00:46:34 mikehardy Exp $
  */
 public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
 {
@@ -58,10 +59,12 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
     {
         DataSourceMigrationContext context = (DataSourceMigrationContext) ctx;
         
+        Connection conn = null;
+        PreparedStatement stmt = null;
         try
         {
-            Connection conn = context.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(getStatmentSql());
+            conn = context.getConnection();
+            stmt = conn.prepareStatement(getStatmentSql());
             List rows = getData(getResourceAsStream());
             int rowCount = rows.size();
             for (int i = 0; i < rowCount; i++)
@@ -78,6 +81,7 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
                 }
             }
             stmt.executeBatch();
+            context.commit();
         }
         catch (Exception e)
         {
@@ -91,7 +95,13 @@ public abstract class SqlLoadMigrationTask extends MigrationTaskSupport
                 }
             }
             
+            context.rollback();
+            
             throw new MigrationException(message, e);
+        }
+        finally
+        {
+            SqlUtil.close(conn, stmt, null);
         }
     }
     
