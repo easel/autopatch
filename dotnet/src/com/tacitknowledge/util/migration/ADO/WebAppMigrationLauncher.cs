@@ -1,45 +1,62 @@
 /* Copyright 2005 Tacit Knowledge LLC
-*
+* 
 * Licensed under the Tacit Knowledge Open License, Version 1.0 (the "License");
 * you may not use this file except in compliance with the License. You may
 * obtain a copy of the License at http://www.tacitknowledge.com/licenses-1.0.
-*
+* 
 * Unless required by applicable law or agreed to in writing, software
 * distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
-* limitations under the License.*/
+* limitations under the License.
+*/
 #region Imports
 using System;
 using log4net;
-using log4net.Config;
-using ClassDiscoveryUtil = com.tacitknowledge.util.discovery.ClassDiscoveryUtil;
+using log4net.Config;using ClassDiscoveryUtil = com.tacitknowledge.util.discovery.ClassDiscoveryUtil;
 using WebAppResourceListSource = com.tacitknowledge.util.discovery.WebAppResourceListSource;
 using MigrationException = com.tacitknowledge.util.migration.MigrationException;
 #endregion
 namespace com.tacitknowledge.util.migration.ado
 {
 	
-	/// <summary> Used to configure the migration engine using JNDI and properties 
-	/// set in the servlet context for a web application.  This newer class 
-	/// removes the need to use a migration.properties file.  Instead, set the 
-	/// following properties (context-param) in the web.xml file:
-	/// 
+	/// <summary> Launches the migration process upon application context creation.  This class
+	/// is intentionally fail-fast, meaning that it throws a RuntimeException if any
+	/// problems arise during migration and will prevent the web application from
+	/// being fully deployed.
+	/// <p>
+	/// This class expects the following servlet context init parameters:
 	/// <ul>
-	/// <li>migration.systemname - name of the system to update
-	/// <li>migration.databasetype - ex: mysql
-	/// <li>migration.patchpath - colon separated path to look for files
-	/// <li>migration.datasource - ex: ado/clickstream
+	/// <li>migration.systemname - the name of the logical system being migrated</li>
 	/// </ul>
-	/// All properties listed above are required.  
+	/// <p>
+	/// Below is an example of how this class can be configured in web.xml:
+	/// <pre>
+	/// ...
+	/// &lt;context-param&gt;
+	/// &lt;param-name&gt;migration.systemname&lt;/param-name&gt;
+	/// &lt;param-value&gt;milestone&lt;/param-value&gt;
+	/// &lt;/context-param&gt;
+	/// ...
+	/// &lt;!-- immediately after the filter configs... --&gt;
+	/// ...
+	/// &lt;listener&gt;
+	/// &lt;listener-class&gt;
+	/// com.tacitknowledge.util.migration.patchtable.WebAppMigrationLauncher
+	/// &lt;/listener-class&gt;
+	/// &lt;/listener&gt;
+	/// ...
+	/// </pre> 
 	/// 
 	/// </summary>
-	/// <author>  Chris A. (chris@tacitknowledge.com)
+	/// <author>   Scott Askew (scott@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: WebAppJNDIMigrationLauncher.cs,v 1.1 2007/03/05 18:08:03 imorti Exp $
+	/// <version>  $Id: WebAppMigrationLauncher.cs,v 1.1 2007/03/06 19:11:46 mikehardy Exp $
 	/// </version>
+	/// <seealso cref="com.tacitknowledge.util.migration.MigrationProcess">
+	/// </seealso>
 	//UPGRADE_ISSUE: Interface 'javax.servlet.ServletContextListener' was not converted. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1000_javaxservletServletContextListener'"
-	public class WebAppJNDIMigrationLauncher : ServletContextListener
+	public class WebAppMigrationLauncher : ServletContextListener
 	{
 		/// <summary> Keeps track of the first run of the class within this web app deployment.
 		/// This should always be true, but you can never be too careful.
@@ -47,7 +64,7 @@ namespace com.tacitknowledge.util.migration.ado
 		private static bool firstRun = true;
 		
 		/// <summary> Class logger</summary>
-		//UPGRADE_NOTE: The initialization of  'log' was moved to static method 'com.tacitknowledge.util.migration.ado.WebAppJNDIMigrationLauncher'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
+		//UPGRADE_NOTE: The initialization of  'log' was moved to static method 'com.tacitknowledge.util.migration.ado.WebAppMigrationLauncher'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		private static ILog log;
 		
 		/// <seealso cref="ServletContextListener.contextInitialized(ServletContextEvent)">
@@ -66,13 +83,15 @@ namespace com.tacitknowledge.util.migration.ado
 				}
 				firstRun = false;
 				
+				System.String systemName = getRequiredParam("migration.systemname", sce);
+				
 				// The MigrationLauncher is responsible for handling the interaction
 				// between the PatchTable and the underlying MigrationTasks; as each
 				// task is executed, the patch level is incremented, etc.
 				try
 				{
 					ADOMigrationLauncherFactory launcherFactory = ADOMigrationLauncherFactoryLoader.createFactory();
-					ADOMigrationLauncher launcher = launcherFactory.createMigrationLauncher(sce);
+					ADOMigrationLauncher launcher = launcherFactory.createMigrationLauncher(systemName);
 					launcher.doMigrations();
 				}
 				catch (MigrationException e)
@@ -109,9 +128,33 @@ namespace com.tacitknowledge.util.migration.ado
 		{
 			log.debug("context is being destroyed " + sce);
 		}
-		static WebAppJNDIMigrationLauncher()
+		
+		/// <summary> Returns the value of the specified servlet context initialization parameter.
+		/// 
+		/// </summary>
+		/// <param name="param">the parameter to return
+		/// </param>
+		/// <param name="sce">the <code>ServletContextEvent</code> being handled
+		/// </param>
+		/// <returns> the value of the specified servlet context initialization parameter
+		/// </returns>
+		/// <throws>  IllegalArgumentException if the parameter does not exist </throws>
+		//UPGRADE_ISSUE: Class 'javax.servlet.ServletContextEvent' was not converted. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1000_javaxservletServletContextEvent'"
+		private System.String getRequiredParam(System.String param, ServletContextEvent sce)
 		{
-			log = LogManager.GetLogger(typeof(WebAppJNDIMigrationLauncher));
+			//UPGRADE_ISSUE: Method 'javax.servlet.ServletContextEvent.getServletContext' was not converted. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1000_javaxservletServletContextEvent'"
+			System.Web.HttpApplicationState context = sce.getServletContext();
+			//UPGRADE_ISSUE: Method 'javax.servlet.ServletContext.getInitParameter' was not converted. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1000_javaxservletServletContextgetInitParameter_javalangString'"
+			System.String value_Renamed = context.getInitParameter(param);
+			if (value_Renamed == null)
+			{
+				throw new System.ArgumentException("'" + param + "' is a required " + "servlet context initialization parameter for the \"" + GetType().FullName + "\" class.  Aborting.");
+			}
+			return value_Renamed;
+		}
+		static WebAppMigrationLauncher()
+		{
+			log = LogManager.GetLogger(typeof(WebAppMigrationLauncher));
 		}
 	}
 }

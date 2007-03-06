@@ -25,7 +25,7 @@ namespace com.tacitknowledge.util.migration.ado
 	/// </summary>
 	/// <author>   Scott Askew (scott@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: SqlLoadMigrationTask.cs,v 1.1 2007/03/05 18:08:02 imorti Exp $
+	/// <version>  $Id: SqlLoadMigrationTask.cs,v 1.1 2007/03/06 19:11:46 mikehardy Exp $
 	/// </version>
 	public abstract class SqlLoadMigrationTask:MigrationTaskSupport
 	{

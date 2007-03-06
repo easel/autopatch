@@ -36,7 +36,7 @@ namespace com.tacitknowledge.util.migration.ado.loader
 	/// </summary>
 	/// <author>  Chris A. (chris@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: DelimitedFileLoader.cs,v 1.1 2007/03/05 18:08:06 imorti Exp $
+	/// <version>  $Id: DelimitedFileLoader.cs,v 1.1 2007/03/06 19:11:51 mikehardy Exp $
 	/// </version>
 	public abstract class DelimitedFileLoader:SqlLoadMigrationTask
     {

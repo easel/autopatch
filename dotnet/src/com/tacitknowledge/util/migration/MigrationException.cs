@@ -21,7 +21,7 @@ namespace com.tacitknowledge.util.migration
 	/// </summary>
 	/// <author>   Scott Askew (scott@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: MigrationException.cs,v 1.1 2007/03/05 18:08:08 imorti Exp $
+	/// <version>  $Id: MigrationException.cs,v 1.1 2007/03/06 19:11:47 mikehardy Exp $
 	/// </version>
 	[Serializable]
 	public class MigrationException:System.Exception

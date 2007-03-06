@@ -26,7 +26,7 @@ namespace com.tacitknowledge.util.migration.ado.util
 	/// </summary>
 	/// <author>   Scott Askew (scott@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: SqlUtil.cs,v 1.1 2007/03/05 18:08:07 imorti Exp $
+	/// <version>  $Id: SqlUtil.cs,v 1.1 2007/03/06 19:11:43 mikehardy Exp $
 	/// </version>
 	public sealed class SqlUtil
     {
