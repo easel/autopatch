@@ -1,4 +1,5 @@
-/* Copyright 2005 Tacit Knowledge LLC
+/* 
+ * Copyright 2007 Tacit Knowledge LLC
  * 
  * Licensed under the Tacit Knowledge Open License, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License. You may
@@ -10,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id: ClassMigrationTaskSourceTest.java,v 1.1 2005/02/22 19:35:12 mike Exp $
+ * $Id: ClassMigrationTaskSourceTest.java,v 1.2 2007/03/07 00:25:56 mikehardy Exp $
  */
 package com.tacitknowledge.util.migration;
 
