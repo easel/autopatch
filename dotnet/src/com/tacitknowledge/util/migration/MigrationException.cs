@@ -21,7 +21,7 @@ namespace com.tacitknowledge.util.migration
 	/// </summary>
 	/// <author>   Scott Askew (scott@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: MigrationException.cs,v 1.1 2007/03/06 19:11:47 mikehardy Exp $
+	/// <version>  $Id: MigrationException.cs,v 1.2 2007/03/07 14:32:08 imorti Exp $
 	/// </version>
 	[Serializable]
 	public class MigrationException:System.Exception
@@ -32,9 +32,7 @@ namespace com.tacitknowledge.util.migration
 		{
 		}
 		
-		/// <seealso cref="Exception.Exception(String, Throwable)">
-		/// </seealso>
-		//UPGRADE_NOTE: Exception 'java.lang.Throwable' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
+		
 		public MigrationException(System.String message, System.Exception cause):base(message, cause)
 		{
 		}

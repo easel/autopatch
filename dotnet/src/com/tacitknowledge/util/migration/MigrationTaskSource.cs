@@ -21,7 +21,7 @@ namespace com.tacitknowledge.util.migration
 	/// </summary>
 	/// <author>   Scott Askew (scott@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: MigrationTaskSource.cs,v 1.1 2007/03/06 19:11:48 mikehardy Exp $
+	/// <version>  $Id: MigrationTaskSource.cs,v 1.2 2007/03/07 14:32:08 imorti Exp $
 	/// </version>
 	public interface MigrationTaskSource
 	{

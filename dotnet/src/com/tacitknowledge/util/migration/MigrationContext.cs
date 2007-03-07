@@ -22,7 +22,7 @@ namespace com.tacitknowledge.util.migration
 	/// </summary>
 	/// <author>   Scott Askew (scott@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: MigrationContext.cs,v 1.1 2007/03/06 19:11:47 mikehardy Exp $
+	/// <version>  $Id: MigrationContext.cs,v 1.2 2007/03/07 14:32:08 imorti Exp $
 	/// </version>
 	public struct MigrationContext_Fields{
 		/// <summary> The name of the migration configuration file</summary>
