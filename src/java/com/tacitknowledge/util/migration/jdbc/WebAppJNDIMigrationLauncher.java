@@ -1,15 +1,16 @@
-/* Copyright 2005 Tacit Knowledge LLC
-*
-* Licensed under the Tacit Knowledge Open License, Version 1.0 (the "License");
-* you may not use this file except in compliance with the License. You may
-* obtain a copy of the License at http://www.tacitknowledge.com/licenses-1.0.
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+/* 
+ * Copyright 2007 Tacit Knowledge LLC
+ *
+ * Licensed under the Tacit Knowledge Open License, Version 1.0 (the "License");
+ * you may not use this file except in compliance with the License. You may
+ * obtain a copy of the License at http://www.tacitknowledge.com/licenses-1.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tacitknowledge.util.migration.jdbc;
 
 import javax.servlet.ServletContextEvent;
@@ -37,7 +38,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * All properties listed above are required.  
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: WebAppJNDIMigrationLauncher.java,v 1.2 2006/05/27 01:58:00 mike Exp $
+ * @version $Id: WebAppJNDIMigrationLauncher.java,v 1.3 2007/03/08 02:02:56 mikehardy Exp $
  */
 public class WebAppJNDIMigrationLauncher implements ServletContextListener
 {
@@ -52,9 +53,7 @@ public class WebAppJNDIMigrationLauncher implements ServletContextListener
      */
     private static Log log = LogFactory.getLog(WebAppJNDIMigrationLauncher.class);
     
-    /**
-     * @see ServletContextListener#contextInitialized(ServletContextEvent)
-     */
+    /** {@inheritDoc} */
     public void contextInitialized(ServletContextEvent sce)
     {
         try
@@ -105,9 +104,7 @@ public class WebAppJNDIMigrationLauncher implements ServletContextListener
         }
     }
 
-    /**
-     * @see ServletContextListener#contextDestroyed(ServletContextEvent)
-     */
+    /** {@inheritDoc} */
     public void contextDestroyed(ServletContextEvent sce)
     {
         log.debug("context is being destroyed " + sce);

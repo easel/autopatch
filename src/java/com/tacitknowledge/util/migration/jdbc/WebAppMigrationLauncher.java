@@ -1,4 +1,5 @@
-/* Copyright 2005 Tacit Knowledge LLC
+/* 
+ * Copyright 2007 Tacit Knowledge LLC
  * 
  * Licensed under the Tacit Knowledge Open License, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License. You may
@@ -54,7 +55,7 @@ import com.tacitknowledge.util.migration.MigrationException;
  * </pre> 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: WebAppMigrationLauncher.java,v 1.10 2006/05/27 01:58:00 mike Exp $
+ * @version $Id: WebAppMigrationLauncher.java,v 1.11 2007/03/08 02:02:56 mikehardy Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class WebAppMigrationLauncher implements ServletContextListener
@@ -70,9 +71,7 @@ public class WebAppMigrationLauncher implements ServletContextListener
      */
     private static Log log = LogFactory.getLog(WebAppMigrationLauncher.class);
     
-    /**
-     * @see ServletContextListener#contextInitialized(ServletContextEvent)
-     */
+    /** {@inheritDoc} */
     public void contextInitialized(ServletContextEvent sce)
     {
         try
@@ -125,9 +124,7 @@ public class WebAppMigrationLauncher implements ServletContextListener
         }
     }
 
-    /**
-     * @see ServletContextListener#contextDestroyed(ServletContextEvent)
-     */
+    /** {@inheritDoc} */
     public void contextDestroyed(ServletContextEvent sce)
     {
         log.debug("context is being destroyed " + sce);
