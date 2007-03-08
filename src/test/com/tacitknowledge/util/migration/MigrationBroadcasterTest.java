@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id: MigrationBroadcasterTest.java,v 1.2 2005/02/24 00:57:03 mike Exp $
+ * $Id: MigrationBroadcasterTest.java,v 1.3 2007/03/08 01:48:30 mikehardy Exp $
  */
 package com.tacitknowledge.util.migration;
 
@@ -33,7 +33,7 @@ public class MigrationBroadcasterTest extends TestCase implements MigrationListe
     private boolean failed = false;
 
     /** The broadcaster being tested */
-    MigrationBroadcaster broadcaster = null;
+    private MigrationBroadcaster broadcaster = null;
     
     /**
      * Set up our test state

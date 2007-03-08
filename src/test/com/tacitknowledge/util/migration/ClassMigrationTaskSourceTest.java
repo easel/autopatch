@@ -11,14 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id: ClassMigrationTaskSourceTest.java,v 1.2 2007/03/07 00:25:56 mikehardy Exp $
+ * $Id: ClassMigrationTaskSourceTest.java,v 1.3 2007/03/08 01:48:30 mikehardy Exp $
  */
 package com.tacitknowledge.util.migration;
 
 import java.util.List;
 import junit.framework.TestCase;
-
-import com.tacitknowledge.util.migration.MigrationException;
 
 /**
  * Exercise the ClassMigrationTaskSource object
