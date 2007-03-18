@@ -22,7 +22,7 @@ namespace com.tacitknowledge.util.migration
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationTaskSupport.cs,v 1.5 2007/03/18 17:57:24 vgangantk Exp $</version>
+    /// <version>$Id: MigrationTaskSupport.cs,v 1.6 2007/03/18 21:13:39 vgangantk Exp $</version>
     public abstract class MigrationTaskSupport : IMigrationTask
     {
         #region Member variables
@@ -32,7 +32,7 @@ namespace com.tacitknowledge.util.migration
 
         #region Public properties
         /// <seealso cref="IMigrationTask.Name"/>
-        public String Name
+        public virtual String Name
         {
             get { return name; }
             set { name = value; }

@@ -62,7 +62,7 @@ namespace com.tacitknowledge.util.migration
 	/// </summary>
 	/// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationProcess.cs,v 1.6 2007/03/18 20:08:43 vgangantk Exp $</version>
+    /// <version>$Id: MigrationProcess.cs,v 1.7 2007/03/18 21:13:39 vgangantk Exp $</version>
     public class MigrationProcess
     {
         #region Member variables
@@ -92,7 +92,8 @@ namespace com.tacitknowledge.util.migration
         /// </summary>
         /// <param name="task">the task being run for migration</param>
         /// <param name="context">the migration context</param>
-        public delegate void MigrationStatusEventHandler(IMigrationTask task, IMigrationContext context);
+        /// <param name="e">the exception if error status; <code>null</code> otherwise</param>
+        public delegate void MigrationStatusEventHandler(IMigrationTask task, IMigrationContext context, MigrationException e);
         #endregion
 
         #region Public events
@@ -365,7 +366,7 @@ namespace com.tacitknowledge.util.migration
 			{
                 if (MigrationStarted != null)
                 {
-                    MigrationStarted(task, context);
+                    MigrationStarted(task, context, null);
                     //broadcaster.notifyListeners(task, context, MigrationBroadcaster.TASK_START);
                     //log.Debug("broadcaster has " + broadcaster.Listeners.Count + " listeners");
                 }
@@ -386,7 +387,7 @@ namespace com.tacitknowledge.util.migration
 				{
                     if (MigrationSuccessful != null)
                     {
-                        MigrationSuccessful(task, context);
+                        MigrationSuccessful(task, context, null);
                         //broadcaster.notifyListeners(task, context, MigrationBroadcaster.TASK_SUCCESS);
                     }
 				}
@@ -399,7 +400,7 @@ namespace com.tacitknowledge.util.migration
 				{
                     if (MigrationFailed != null)
                     {
-                        MigrationFailed(task, context);
+                        MigrationFailed(task, context, e);
                         //broadcaster.notifyListeners(task, context, e, MigrationBroadcaster.TASK_FAILED);
                     }
 				}
