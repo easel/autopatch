@@ -62,7 +62,7 @@ namespace com.tacitknowledge.util.migration
 	/// </summary>
 	/// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationProcess.cs,v 1.5 2007/03/18 17:57:24 vgangantk Exp $</version>
+    /// <version>$Id: MigrationProcess.cs,v 1.6 2007/03/18 20:08:43 vgangantk Exp $</version>
     public class MigrationProcess
     {
         #region Member variables
@@ -205,7 +205,7 @@ namespace com.tacitknowledge.util.migration
             // TODO Clarify what to do with .SQL patch resources
 			// Make the path package-name-like so that ClassLoader.getResourceAsStream
 			// will work correctly
-			String packageName = dir.Replace('/', '.').Replace('\\', '.');
+            String packageName = dir.Replace('/', '.').Replace('\\', '.');
 			AddPatchResourceAssembly(packageName);
 		}
 		
