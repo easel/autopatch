@@ -24,7 +24,7 @@ using log4net.Config;
 
 using HSSFWorkbook = org.apache.poi.hssf.usermodel.HSSFWorkbook;
 using POIFSFileSystem = org.apache.poi.poifs.filesystem.POIFSFileSystem;
-using MigrationContext = com.tacitknowledge.util.migration.MigrationContext;
+using MigrationContext = com.tacitknowledge.util.migration.IMigrationContext;
 using MigrationException = com.tacitknowledge.util.migration.MigrationException;
 using MigrationTaskSupport = com.tacitknowledge.util.migration.MigrationTaskSupport;
 using DataSourceMigrationContext = com.tacitknowledge.util.migration.ado.DataSourceMigrationContext;
@@ -40,7 +40,7 @@ namespace com.tacitknowledge.util.migration.ado.loader
 	/// </summary>
 	/// <author>  Chris A. (chris@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: ExcelFileLoader.cs,v 1.1 2007/03/06 19:11:51 mikehardy Exp $
+	/// <version>  $Id: ExcelFileLoader.cs,v 1.2 2007/03/18 17:51:14 vgangantk Exp $
 	/// </version>
 	public abstract class ExcelFileLoader:MigrationTaskSupport
     {
