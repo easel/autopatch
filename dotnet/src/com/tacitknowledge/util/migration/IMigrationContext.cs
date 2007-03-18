@@ -21,8 +21,7 @@ namespace com.tacitknowledge.util.migration
     /// Provides system resources to migration tasks.
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
-    /// <author>Ian Mortimer (imorti@tacitknowledge.com)</author>
-    /// <version>$Id: IMigrationContext.cs,v 1.1 2007/03/17 17:01:08 vgangantk Exp $</version>
+    /// <version>$Id: IMigrationContext.cs,v 1.2 2007/03/18 17:57:24 vgangantk Exp $</version>
     public interface IMigrationContext
     {
         #region Public methods

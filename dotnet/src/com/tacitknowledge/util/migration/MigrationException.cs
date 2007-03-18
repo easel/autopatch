@@ -22,18 +22,18 @@ namespace com.tacitknowledge.util.migration
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Ian Mortimer (imorti@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationException.cs,v 1.3 2007/03/17 17:01:09 vgangantk Exp $</version>
+    /// <version>$Id: MigrationException.cs,v 1.4 2007/03/18 17:57:24 vgangantk Exp $</version>
     [Serializable]
     public class MigrationException : Exception
     {
         #region Constructors
-        /// <seealso cref="System.Exception.Exception(String)"/>
+        /// <seealso cref="Exception(String)"/>
         public MigrationException(String message)
             : base(message)
         {
         }
 
-        /// <seealso cref="System.Exception.Exception(String, Exception)"/>
+        /// <seealso cref="Exception(String, Exception)"/>
         public MigrationException(String message, Exception cause)
             : base(message, cause)
         {
