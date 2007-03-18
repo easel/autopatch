@@ -22,7 +22,7 @@ namespace com.tacitknowledge.util.migration
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationTaskSupport.cs,v 1.3 2007/03/17 17:01:08 vgangantk Exp $</version>
+    /// <version>$Id: MigrationTaskSupport.cs,v 1.4 2007/03/18 13:12:51 vgangantk Exp $</version>
     public abstract class MigrationTaskSupport : IMigrationTask
     {
         #region Member variables

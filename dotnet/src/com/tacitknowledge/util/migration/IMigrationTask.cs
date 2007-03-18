@@ -22,7 +22,7 @@ namespace com.tacitknowledge.util.migration
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: IMigrationTask.cs,v 1.1 2007/03/17 17:01:08 vgangantk Exp $</version>
+    /// <version>$Id: IMigrationTask.cs,v 1.2 2007/03/18 13:12:51 vgangantk Exp $</version>
     public interface IMigrationTask : IComparable<IMigrationTask>
     {
         #region Properties
