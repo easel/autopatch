@@ -1,5 +1,5 @@
-/*
- * Copyright 2006 Tacit Knowledge LLC
+/* 
+ * Copyright 2007 Tacit Knowledge LLC
  * 
  * Licensed under the Tacit Knowledge Open License, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License. You may
@@ -15,16 +15,16 @@
 using System;
 using System.Data.Common;
 using log4net;
-using AutopatchNET.src.com.tacitknowledge.util.migration.ADO.data;
+using com.tacitknowledge.util.migration.ado.data;
 #endregion
 
-namespace AutopatchNET.src.com.tacitknowledge.util.migration
+namespace com.tacitknowledge.util.migration
 {
     /// <summary>
     /// Contains the connection object necessary to reach the data store
     /// </summary>
     /// <author>Ian Mortimer (imorti@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationDataSource.cs,v 1.1 2007/03/19 21:24:09 vgangantk Exp $</version>
+    /// <version>$Id: MigrationDataSource.cs,v 1.2 2007/03/20 19:33:25 vgangantk Exp $</version>
     public class MigrationDataSource
     {
         #region Member variables
