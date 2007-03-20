@@ -54,7 +54,7 @@ namespace com.tacitknowledge.util.migration.ado
 	/// </summary>
 	/// <author>   Scott Askew (scott@tacitknowledge.com)
 	/// </author>
-	/// <version>  $Id: WebAppMigrationLauncher.cs,v 1.1 2007/03/20 19:38:33 vgangantk Exp $
+	/// <version>  $Id: WebAppMigrationLauncher.cs,v 1.2 2007/03/20 19:52:05 vgangantk Exp $
 	/// </version>
 	/// <seealso cref="com.tacitknowledge.util.migration.MigrationProcess">
 	/// </seealso>
@@ -88,8 +88,8 @@ namespace com.tacitknowledge.util.migration.ado
 				// task is executed, the patch level is incremented, etc.
 				try
 				{
-					ADOMigrationLauncherFactory launcherFactory = ADOMigrationLauncherFactoryLoader.createFactory();
-					ADOMigrationLauncher launcher = launcherFactory.createMigrationLauncher(migrationConfig.SystemName);
+					AdoMigrationLauncherFactory launcherFactory = AdoMigrationLauncherFactoryLoader.createFactory();
+					AdoMigrationLauncher launcher = launcherFactory.createMigrationLauncher(migrationConfig.SystemName);
 					launcher.doMigrations();
                     firstRun = false;
 				}
