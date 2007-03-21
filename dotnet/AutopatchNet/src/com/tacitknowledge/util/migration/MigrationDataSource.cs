@@ -24,21 +24,11 @@ namespace com.tacitknowledge.util.migration
     /// Contains the connection object necessary to reach the data store
     /// </summary>
     /// <author>Ian Mortimer (imorti@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationDataSource.cs,v 1.2 2007/03/20 19:33:25 vgangantk Exp $</version>
+    /// <version>$Id: MigrationDataSource.cs,v 1.3 2007/03/21 20:53:19 vgangantk Exp $</version>
     public class MigrationDataSource
     {
         #region Member variables
-        private static ILog log;
-        #endregion
-
-        #region Costructors
-        /// <summary>
-        /// Static constructor.
-        /// </summary>
-        static MigrationDataSource()
-        {
-            log = LogManager.GetLogger(typeof(MigrationDataSource));
-        }
+        private static readonly ILog log = LogManager.GetLogger(typeof(MigrationDataSource));
         #endregion
 
         #region Public methods

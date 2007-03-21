@@ -23,7 +23,7 @@ namespace com.tacitknowledge.util.migration
     /// <summary>
     /// The purpose of this class is to be called from the Global.asax file and initiate Migration tasks.
     /// </summary>
-    /// <version>$Id: AutoPatchEventListener.cs,v 1.2 2007/03/20 19:33:25 vgangantk Exp $</version>
+    /// <version>$Id: AutoPatchEventListener.cs,v 1.3 2007/03/21 20:50:52 vgangantk Exp $</version>
     class AutoPatchEventListener
     {
         #region Members
@@ -34,10 +34,7 @@ namespace com.tacitknowledge.util.migration
          */
         //private static bool firstRun = true;
 
-        /*
-         * Log4Net logger
-         */ 
-        private static ILog log;
+        private static readonly ILog log = LogManager.GetLogger(typeof(AutoPatchEventListener));
 
         private ConfigurationManager configMgr;
 
@@ -90,12 +87,6 @@ namespace com.tacitknowledge.util.migration
             migrationConfig = configMgr.getMigrationConfiguration();
 
         }
-
-        static AutoPatchEventListener()
-        {
-            log = LogManager.GetLogger(typeof(AutoPatchEventListener));
-        }
-
         #endregion
     }
 }
