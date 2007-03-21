@@ -25,7 +25,7 @@ namespace com.tacitknowledge.util.migration
     /// A unit test for verifying functionality of <code>ClassMigrationTaskSource</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: ClassMigrationTaskSourceTest.cs,v 1.2 2007/03/20 19:33:25 vgangantk Exp $</version>
+    /// <version>$Id: ClassMigrationTaskSourceTest.cs,v 1.3 2007/03/21 21:01:08 vgangantk Exp $</version>
     [TestFixture]
     public class ClassMigrationTaskSourceTest
     {
@@ -80,7 +80,8 @@ namespace com.tacitknowledge.util.migration
             try
             {
                 IList<IMigrationTask> tasks =
-                    source.GetMigrationTasks(typeof(MigrationTask1).Assembly.CodeBase);
+                    //source.GetMigrationTasks(typeof(MigrationTask1).Assembly.CodeBase);
+                    source.GetMigrationTasks(typeof(MigrationTask1).Assembly.Location);
 
                 Assert.Less(0, tasks.Count);
             }
