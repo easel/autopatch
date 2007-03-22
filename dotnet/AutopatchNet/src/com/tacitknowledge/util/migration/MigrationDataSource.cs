@@ -24,24 +24,26 @@ namespace com.tacitknowledge.util.migration
     /// Contains the connection object necessary to reach the data store
     /// </summary>
     /// <author>Ian Mortimer (imorti@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationDataSource.cs,v 1.3 2007/03/21 20:53:19 vgangantk Exp $</version>
+    /// <version>$Id: MigrationDataSource.cs,v 1.4 2007/03/22 21:12:48 vgangantk Exp $</version>
     public class MigrationDataSource
     {
         #region Member variables
         private static readonly ILog log = LogManager.GetLogger(typeof(MigrationDataSource));
         #endregion
 
-        #region Public methods
+        #region Public properties
         /// <summary>
         /// Returns the connection object for the data store.
         /// </summary>
-        /// <returns>the connection object for the data store</returns>
-        public DbConnection getConnection()
+        public DbConnection Connection
         {
-            log.Debug("Getting Connection from DBConnectionFactory");
-            DBConnectionFactory dbConnFactory = new DBConnectionFactory();
+            get
+            {
+                log.Debug("Getting Connection from DBConnectionFactory");
+                DBConnectionFactory dbConnFactory = new DBConnectionFactory();
 
-            return dbConnFactory.getConnection();
+                return dbConnFactory.getConnection();
+            }
         }
         #endregion
     }

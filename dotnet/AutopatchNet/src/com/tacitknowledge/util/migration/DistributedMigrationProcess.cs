@@ -29,7 +29,7 @@ namespace com.tacitknowledge.util.migration
 	/// </summary>
 	/// <author>  Mike Hardy (mike@tacitknowledge.com)
 	/// </author>
-    /// <version>$Id: DistributedMigrationProcess.cs,v 1.3 2007/03/20 19:52:08 vgangantk Exp $</version>
+    /// <version>$Id: DistributedMigrationProcess.cs,v 1.4 2007/03/22 21:12:48 vgangantk Exp $</version>
     public class DistributedMigrationProcess : MigrationProcess
     {
 
@@ -75,7 +75,7 @@ namespace com.tacitknowledge.util.migration
 					{
 						if (log.IsDebugEnabled)
 						{
-							log.Debug("\tMigration+Launcher binder found subtask " + task.Name + " for launcher context " + subLauncher.Context.getSystemName());
+							log.Debug("\tMigration+Launcher binder found subtask " + task.Name + " for launcher context " + subLauncher.Context.SystemName);
 						}
 						
 						// store the task, related to its launcher
