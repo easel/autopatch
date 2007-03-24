@@ -27,7 +27,7 @@ namespace com.tacitknowledge.util.migration
     /// A unit test for verifying core functionality of <code>MigrationProcess</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationProcessTest.cs,v 1.5 2007/03/24 07:09:56 vgangantk Exp $</version>
+    /// <version>$Id: MigrationProcessTest.cs,v 1.6 2007/03/24 07:44:04 vgangantk Exp $</version>
     [TestFixture]
     public class MigrationProcessTest
     {
@@ -169,6 +169,50 @@ namespace com.tacitknowledge.util.migration
             {
                 Assert.Fail("We should not have gotten an exception");
             }
+        }
+
+        /// <summary>
+        /// Make sure that post-patch migration process does not run when no tasks are found.
+        /// </summary>
+        [Test]
+        public void DoPostPatchMigrationsNoTasks()
+        {
+            TestMigrationContext context = new TestMigrationContext();
+            FakeSqlMigrationProcess process = new FakeSqlMigrationProcess();
+            SqlScriptMigrationTaskSource taskSource = new SqlScriptMigrationTaskSource();
+            process.AddPostPatchResourceDirectory(Directory.GetCurrentDirectory() + "\\..\\..\\sql\\empty-directory");
+            process.AddMigrationTaskSource(taskSource);
+            int tasksRun = process.DoPostPatchMigrations(context);
+
+            Assert.AreEqual(0, tasksRun);
+        }
+
+        /// <summary>
+        /// Make sure that SQL script post-patch migrations work in conjunction with .NET code
+        /// post-patch migrations.
+        /// </summary>
+        [Test]
+        public void DoPostPatchMigrationsFromSqlFileAndClasses()
+        {
+            TestMigrationContext context = new TestMigrationContext();
+            FakeSqlMigrationProcess process = new FakeSqlMigrationProcess();
+            SqlScriptMigrationTaskSource taskSource = new SqlScriptMigrationTaskSource();
+            process.AddPostPatchResourceAssembly(typeof(MigrationTask1).Assembly.Location);
+            process.AddPostPatchResourceDirectory(Directory.GetCurrentDirectory() + "\\..\\..");
+            process.AddMigrationTaskSource(taskSource);
+            process.DoPostPatchMigrations(context);
+
+            // There currently are 2 .NET code and 3 SQL patches for tests
+            Assert.IsTrue(context.HasExecuted(new MigrationTask1().Name),
+                "MigrationTask1 was supposed to be run");
+            Assert.IsTrue(context.HasExecuted(new MigrationTask2().Name),
+                "MigrationTask2 was supposed to be run");
+            Assert.IsTrue(context.HasExecuted("patch0003_dummy_SQL_file"),
+                "patch0003_dummy_SQL_file was supposed to be run");
+            Assert.IsTrue(context.HasExecuted("patch0004_fourth_patch"),
+                "patch0004_fourth_patch was supposed to be run");
+            Assert.IsTrue(context.HasExecuted("patch0005_fifth_patch"),
+                "patch0005_fifth_patch was supposed to be run");
         }
 
         /// <summary>
