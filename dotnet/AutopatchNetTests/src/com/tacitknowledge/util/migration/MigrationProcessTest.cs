@@ -27,7 +27,7 @@ namespace com.tacitknowledge.util.migration
     /// A unit test for verifying core functionality of <code>MigrationProcess</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationProcessTest.cs,v 1.6 2007/03/24 07:44:04 vgangantk Exp $</version>
+    /// <version>$Id: MigrationProcessTest.cs,v 1.7 2007/03/24 09:04:10 vgangantk Exp $</version>
     [TestFixture]
     public class MigrationProcessTest
     {
@@ -167,7 +167,7 @@ namespace com.tacitknowledge.util.migration
             }
             catch (MigrationException)
             {
-                Assert.Fail("We should not have gotten an exception");
+                Assert.Fail("We should not have got an exception");
             }
         }
 

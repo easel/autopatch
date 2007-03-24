@@ -28,7 +28,7 @@ namespace com.tacitknowledge.util.migration.ado
     /// A unit test for verifying functionality of <code>SqlScriptMigrationTask</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: SqlScriptMigrationTaskTest.cs,v 1.4 2007/03/24 07:44:04 vgangantk Exp $</version>
+    /// <version>$Id: SqlScriptMigrationTaskTest.cs,v 1.5 2007/03/24 09:04:10 vgangantk Exp $</version>
     [TestFixture]
     public class SqlScriptMigrationTaskTest
     {
@@ -70,7 +70,7 @@ namespace com.tacitknowledge.util.migration.ado
             }
             catch (MigrationException)
             {
-                Assert.Fail("We should not have gotten an exception");
+                Assert.Fail("We should not have got an exception");
             }
 
             mocks.VerifyAll();
@@ -128,7 +128,7 @@ namespace com.tacitknowledge.util.migration.ado
                 }
                 catch (MigrationException)
                 {
-                    Assert.Fail("We should not have gotten an exception");
+                    Assert.Fail("We should not have got an exception");
                 }
                 finally
                 {
@@ -179,7 +179,7 @@ namespace com.tacitknowledge.util.migration.ado
                 }
                 catch (MigrationException)
                 {
-                    Assert.Fail("We should not have gotten an exception");
+                    Assert.Fail("We should not have got an exception");
                 }
                 finally
                 {
@@ -223,7 +223,7 @@ namespace com.tacitknowledge.util.migration.ado
                 }
                 catch (MigrationException)
                 {
-                    Assert.Fail("We should not have gotten an exception");
+                    Assert.Fail("We should not have got an exception");
                 }
                 finally
                 {
