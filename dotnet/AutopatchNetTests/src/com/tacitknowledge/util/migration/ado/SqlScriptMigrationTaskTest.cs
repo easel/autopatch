@@ -28,7 +28,7 @@ namespace com.tacitknowledge.util.migration.ado
     /// A unit test for verifying functionality of <code>SqlScriptMigrationTask</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: SqlScriptMigrationTaskTest.cs,v 1.2 2007/03/24 06:45:57 vgangantk Exp $</version>
+    /// <version>$Id: SqlScriptMigrationTaskTest.cs,v 1.3 2007/03/24 07:09:56 vgangantk Exp $</version>
     [TestFixture]
     public class SqlScriptMigrationTaskTest
     {
@@ -126,7 +126,7 @@ namespace com.tacitknowledge.util.migration.ado
                         new SqlScriptMigrationTask("patch0003_dummy_SQL_file", 3, sr);
                     task.Migrate(context);
                 }
-                catch (MigrationException me)
+                catch (MigrationException)
                 {
                     Assert.Fail("We should not have gotten an exception");
                 }
@@ -177,7 +177,7 @@ namespace com.tacitknowledge.util.migration.ado
                         + "role_code, project_id) " + Environment.NewLine
                         + "\t\t\tvalues (nextval('role_--id_seq;'),4, 'SYSA', 3)", list[2]);
                 }
-                catch (MigrationException me)
+                catch (MigrationException)
                 {
                     Assert.Fail("We should not have gotten an exception");
                 }
@@ -221,7 +221,7 @@ namespace com.tacitknowledge.util.migration.ado
                         + "role_code, project_id) " + Environment.NewLine
                         + "\t\t\tvalues (nextval('role_id_seq'),2, 'SYSA', 3)", list[0]);
                 }
-                catch (MigrationException me)
+                catch (MigrationException)
                 {
                     Assert.Fail("We should not have gotten an exception");
                 }
