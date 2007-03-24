@@ -25,7 +25,7 @@ namespace com.tacitknowledge.util.migration.ado
     /// A unit test for verifying functionality of <code>SqlScriptMigrationTaskSource</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: SqlScriptMigrationTaskSourceTest.cs,v 1.1 2007/03/22 21:12:48 vgangantk Exp $</version>
+    /// <version>$Id: SqlScriptMigrationTaskSourceTest.cs,v 1.2 2007/03/24 06:45:57 vgangantk Exp $</version>
     [TestFixture]
     public class SqlScriptMigrationTaskSourceTest
     {
@@ -33,20 +33,11 @@ namespace com.tacitknowledge.util.migration.ado
         /// Make sure class instantiation fails on null resource path.
         /// </summary>
         [Test]
+        [ExpectedException(typeof(MigrationException))]
         public void InstantiateTasksNullResourcePath()
         {
             SqlScriptMigrationTaskSource source = new SqlScriptMigrationTaskSource();
-
-            try
-            {
-                source.GetMigrationTasks(null);
-
-                Assert.Fail("We should have gotten an exception for the null resource path");
-            }
-            catch (MigrationException)
-            {
-                // we expect this
-            }
+            source.GetMigrationTasks(null);
         }
 
         /// <summary>
@@ -56,17 +47,10 @@ namespace com.tacitknowledge.util.migration.ado
         public void InstantiateTasksNoTasks()
         {
             SqlScriptMigrationTaskSource source = new SqlScriptMigrationTaskSource();
+            IList<IMigrationTask> tasks =
+                source.GetMigrationTasks(Directory.GetCurrentDirectory() + "\\..\\..\\sql\\empty-directory");
 
-            try
-            {
-                IList<IMigrationTask> tasks = source.GetMigrationTasks(Directory.GetCurrentDirectory() + "\\..\\..\\sql\\empty-directory");
-
-                Assert.AreEqual(0, tasks.Count);
-            }
-            catch (Exception)
-            {
-                Assert.Fail("We should not have gotten an exception");
-            }
+            Assert.AreEqual(0, tasks.Count);
         }
 
         /// <summary>
@@ -76,18 +60,10 @@ namespace com.tacitknowledge.util.migration.ado
         public void InstantiateTasksSuccess()
         {
             SqlScriptMigrationTaskSource source = new SqlScriptMigrationTaskSource();
+            IList<IMigrationTask> tasks =
+                source.GetMigrationTasks(Directory.GetCurrentDirectory() + "\\..\\..\\sql");
 
-            try
-            {
-                IList<IMigrationTask> tasks =
-                    source.GetMigrationTasks(Directory.GetCurrentDirectory() + "\\..\\..\\sql");
-
-                Assert.Less(0, tasks.Count);
-            }
-            catch (MigrationException)
-            {
-                Assert.Fail("We should not have gotten an exception");
-            }
+            Assert.Less(0, tasks.Count);
         }
     }
 }

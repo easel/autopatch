@@ -25,7 +25,7 @@ namespace com.tacitknowledge.util.migration
     /// A unit test for verifying functionality of <code>ClassMigrationTaskSource</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: ClassMigrationTaskSourceTest.cs,v 1.3 2007/03/21 21:01:08 vgangantk Exp $</version>
+    /// <version>$Id: ClassMigrationTaskSourceTest.cs,v 1.4 2007/03/24 06:45:57 vgangantk Exp $</version>
     [TestFixture]
     public class ClassMigrationTaskSourceTest
     {
@@ -33,20 +33,11 @@ namespace com.tacitknowledge.util.migration
         /// Make sure class instantiation fails on null assembly path.
         /// </summary>
         [Test]
+        [ExpectedException(typeof(MigrationException))]
         public void InstantiateTasksNullAssemblyPath()
         {
             ClassMigrationTaskSource source = new ClassMigrationTaskSource();
-
-            try
-            {
-                source.GetMigrationTasks(null);
-
-                Assert.Fail("We should have gotten an exception for the null assembly path");
-            }
-            catch (MigrationException)
-            {
-                // we expect this
-            }
+            source.GetMigrationTasks(null);
         }
 
         /// <summary>
@@ -56,17 +47,9 @@ namespace com.tacitknowledge.util.migration
         public void InstantiateTasksNoTasks()
         {
             ClassMigrationTaskSource source = new ClassMigrationTaskSource();
+            IList<IMigrationTask> tasks = source.GetMigrationTasks("C:/Test.DLL");
 
-            try
-            {
-                IList<IMigrationTask> tasks = source.GetMigrationTasks("C:/Test.DLL");
-
-                Assert.AreEqual(0, tasks.Count);
-            }
-            catch (MigrationException)
-            {
-                Assert.Fail("We should not have gotten an exception");
-            }
+            Assert.AreEqual(0, tasks.Count);
         }
 
         /// <summary>
@@ -76,19 +59,11 @@ namespace com.tacitknowledge.util.migration
         public void InstantiateTasksSuccess()
         {
             ClassMigrationTaskSource source = new ClassMigrationTaskSource();
+            IList<IMigrationTask> tasks =
+                //source.GetMigrationTasks(typeof(MigrationTask1).Assembly.CodeBase);
+                source.GetMigrationTasks(typeof(MigrationTask1).Assembly.Location);
 
-            try
-            {
-                IList<IMigrationTask> tasks =
-                    //source.GetMigrationTasks(typeof(MigrationTask1).Assembly.CodeBase);
-                    source.GetMigrationTasks(typeof(MigrationTask1).Assembly.Location);
-
-                Assert.Less(0, tasks.Count);
-            }
-            catch (MigrationException)
-            {
-                Assert.Fail("We should not have gotten an exception");
-            }
+            Assert.Less(0, tasks.Count);
         }
     }
 }

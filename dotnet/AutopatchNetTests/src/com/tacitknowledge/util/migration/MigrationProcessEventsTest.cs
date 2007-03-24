@@ -25,7 +25,7 @@ namespace com.tacitknowledge.util.migration
     /// A unit test for verifying migration events functionality of <code>MigrationProcess</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationProcessEventsTest.cs,v 1.2 2007/03/20 19:33:25 vgangantk Exp $</version>
+    /// <version>$Id: MigrationProcessEventsTest.cs,v 1.3 2007/03/24 06:45:57 vgangantk Exp $</version>
     [TestFixture]
     public class MigrationProcessEventsTest
     {
@@ -69,9 +69,12 @@ namespace com.tacitknowledge.util.migration
             MigrationProcess process = new MigrationProcess();
             MigrationTask1 task = new MigrationTask1();
 
-            process.MigrationStarted += new MigrationProcess.MigrationStatusEventHandler(process_MigrationStarted);
-            process.MigrationSuccessful += new MigrationProcess.MigrationStatusEventHandler(process_MigrationSuccessful);
-            process.MigrationFailed += new MigrationProcess.MigrationStatusEventHandler(process_MigrationFailed);
+            process.MigrationStarted +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationStarted);
+            process.MigrationSuccessful +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationSuccessful);
+            process.MigrationFailed +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationFailed);
             process.ApplyPatch(context, task, false);
 
             Assert.IsFalse(started, "'started' should be false");
@@ -89,9 +92,12 @@ namespace com.tacitknowledge.util.migration
             MigrationProcess process = new MigrationProcess();
             MigrationTask1 task = new MigrationTask1();
 
-            process.MigrationStarted += new MigrationProcess.MigrationStatusEventHandler(process_MigrationStarted);
-            process.MigrationSuccessful += new MigrationProcess.MigrationStatusEventHandler(process_MigrationSuccessful);
-            process.MigrationFailed += new MigrationProcess.MigrationStatusEventHandler(process_MigrationFailed);
+            process.MigrationStarted +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationStarted);
+            process.MigrationSuccessful +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationSuccessful);
+            process.MigrationFailed +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationFailed);
             process.ApplyPatch(context, task, true);
 
             Assert.IsTrue(started, "'started' should be true");
@@ -103,6 +109,7 @@ namespace com.tacitknowledge.util.migration
         /// Make sure this class receives 'MigrationStarted' and 'MigrationFailed' notifications.
         /// </summary>
         [Test]
+        [ExpectedException(typeof(MigrationException))]
         public void TestFailedMigrationBroadcast()
         {
             TestMigrationContext context = new TestMigrationContext();
@@ -110,22 +117,23 @@ namespace com.tacitknowledge.util.migration
             MigrationTask2 task = new MigrationTask2();
 
             task.ForceFail = true;
-            process.MigrationStarted += new MigrationProcess.MigrationStatusEventHandler(process_MigrationStarted);
-            process.MigrationSuccessful += new MigrationProcess.MigrationStatusEventHandler(process_MigrationSuccessful);
-            process.MigrationFailed += new MigrationProcess.MigrationStatusEventHandler(process_MigrationFailed);
+            process.MigrationStarted +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationStarted);
+            process.MigrationSuccessful +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationSuccessful);
+            process.MigrationFailed +=
+                new MigrationProcess.MigrationStatusEventHandler(process_MigrationFailed);
 
             try
             {
                 process.ApplyPatch(context, task, true);
-
+            }
+            catch (MigrationException me)
+            {
                 Assert.IsTrue(started, "'started' should be true");
                 Assert.IsFalse(succeeded, "'succeeded' should be false");
                 Assert.IsTrue(failed, "'failed' should be true");
-                Assert.Fail("We should have gotten an exception for a failing patch");
-            }
-            catch (MigrationException)
-            {
-                // does nothing
+                throw me;
             }
         }
 
