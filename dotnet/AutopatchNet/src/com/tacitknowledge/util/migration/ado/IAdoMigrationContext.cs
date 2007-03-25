@@ -14,6 +14,7 @@
 #region Imports
 using System;
 using System.Data.Common;
+using Microsoft.Practices.EnterpriseLibrary.Data;
 #endregion
 
 namespace com.tacitknowledge.util.migration.ado
@@ -22,11 +23,27 @@ namespace com.tacitknowledge.util.migration.ado
     /// Contains the configuration and resources for a database patch run.
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
-    /// <version>$Id: IAdoMigrationContext.cs,v 1.1 2007/03/22 21:12:44 vgangantk Exp $</version>
+    /// <version>$Id: IAdoMigrationContext.cs,v 1.2 2007/03/25 14:55:38 vgangantk Exp $</version>
     public interface IAdoMigrationContext : IMigrationContext
     {
         #region Public properties
-		/// <summary>
+        /// <summary>
+        /// The database to use.
+        /// </summary>
+        Database Database
+        {
+            get;
+        }
+
+        /// <summary>
+        /// The current transaction to use.
+        /// </summary>
+        DbTransaction Transaction
+        {
+            get;
+        }
+
+        /// <summary>
         /// The database connection to use.
 		/// </summary>
 		DbConnection Connection
