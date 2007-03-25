@@ -21,20 +21,24 @@ namespace com.tacitknowledge.util.migration
     /// Provides system resources to migration tasks.
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
-    /// <version>$Id: IMigrationContext.cs,v 1.2 2007/03/20 19:33:25 vgangantk Exp $</version>
+    /// <version>$Id: IMigrationContext.cs,v 1.3 2007/03/25 14:53:51 vgangantk Exp $</version>
     public interface IMigrationContext
     {
         #region Public methods
         /// <summary>
         /// Commits the current migration transaction.
         /// </summary>
-        /// <exception cref="MigrationException">if there was an unrecoverable error committing the transaction</exception>
+        /// <exception cref="MigrationException">
+        /// if there was an unrecoverable error committing the transaction
+        /// </exception>
         void Commit();
 
         /// <summary>
         /// Rolls back the current migration transaction.
         /// </summary>
-        /// <exception cref="MigrationException">if there was an unrecoverable error rolling the transaction back</exception>
+        /// <exception cref="MigrationException">
+        /// if there was an unrecoverable error rolling the transaction back
+        /// </exception>
         void Rollback();
         #endregion
     }
