@@ -23,7 +23,7 @@ namespace com.tacitknowledge.util.migration.ado
     /// Contains the configuration and resources for a database patch run.
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
-    /// <version>$Id: IAdoMigrationContext.cs,v 1.2 2007/03/25 14:55:38 vgangantk Exp $</version>
+    /// <version>$Id: IAdoMigrationContext.cs,v 1.3 2007/03/25 15:55:02 vgangantk Exp $</version>
     public interface IAdoMigrationContext : IMigrationContext
     {
         #region Public properties
@@ -66,6 +66,17 @@ namespace com.tacitknowledge.util.migration.ado
         {
             get;
         }
+        #endregion
+
+        #region Public methods
+        /// <summary>
+        /// Closes the open connection and either commits or rolls back the associated pending
+        /// transaction.
+        /// </summary>
+        /// <param name="commitTransaction">
+        /// indicates whether any pending transactions on the open connection should be committed
+        /// </param>
+        void CloseConnection(bool commitTransaction);
         #endregion
     }
 }
