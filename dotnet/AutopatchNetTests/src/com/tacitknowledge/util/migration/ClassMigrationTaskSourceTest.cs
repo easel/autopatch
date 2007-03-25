@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using com.tacitknowledge.testhelpers;
-using com.tacitknowledge.util.migration;
 #endregion
 
 namespace com.tacitknowledge.util.migration
@@ -25,7 +24,7 @@ namespace com.tacitknowledge.util.migration
     /// A unit test for verifying functionality of <code>ClassMigrationTaskSource</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: ClassMigrationTaskSourceTest.cs,v 1.4 2007/03/24 06:45:57 vgangantk Exp $</version>
+    /// <version>$Id: ClassMigrationTaskSourceTest.cs,v 1.5 2007/03/25 14:56:45 vgangantk Exp $</version>
     [TestFixture]
     public class ClassMigrationTaskSourceTest
     {

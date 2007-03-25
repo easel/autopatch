@@ -16,7 +16,6 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using NUnit.Framework;
-using com.tacitknowledge.util.migration.ado;
 #endregion
 
 namespace com.tacitknowledge.util.migration.ado
@@ -25,7 +24,7 @@ namespace com.tacitknowledge.util.migration.ado
     /// A unit test for verifying functionality of <code>SqlScriptMigrationTaskSource</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: SqlScriptMigrationTaskSourceTest.cs,v 1.2 2007/03/24 06:45:57 vgangantk Exp $</version>
+    /// <version>$Id: SqlScriptMigrationTaskSourceTest.cs,v 1.3 2007/03/25 14:56:45 vgangantk Exp $</version>
     [TestFixture]
     public class SqlScriptMigrationTaskSourceTest
     {

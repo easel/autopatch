@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using com.tacitknowledge.testhelpers;
-using com.tacitknowledge.util.migration;
 using com.tacitknowledge.util.migration.ado;
 #endregion
 
@@ -27,7 +26,7 @@ namespace com.tacitknowledge.util.migration
     /// A unit test for verifying core functionality of <code>MigrationProcess</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationProcessTest.cs,v 1.7 2007/03/24 09:04:10 vgangantk Exp $</version>
+    /// <version>$Id: MigrationProcessTest.cs,v 1.8 2007/03/25 14:56:45 vgangantk Exp $</version>
     [TestFixture]
     public class MigrationProcessTest
     {
