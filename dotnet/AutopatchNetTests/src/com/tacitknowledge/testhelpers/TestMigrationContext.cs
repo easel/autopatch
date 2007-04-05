@@ -23,13 +23,18 @@ namespace com.tacitknowledge.testhelpers
     /// A sample migration context to be used in unit tests.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: TestMigrationContext.cs,v 1.2 2007/03/20 19:33:25 vgangantk Exp $</version>
+    /// <version>$Id: TestMigrationContext.cs,v 1.3 2007/04/05 16:29:09 vgangantk Exp $</version>
     public class TestMigrationContext : IMigrationContext
     {
+        private readonly IDictionary<string, bool> executionLog = new Dictionary<string, bool>();
+
         /// <summary>
         /// A record of task executions.
         /// </summary>
-        private IDictionary<string, bool> executionLog = new Dictionary<string, bool>();
+        public IDictionary<string, bool> ExecutionLog
+        {
+            get { return executionLog; }
+        }
 
         public void Commit()
         {
