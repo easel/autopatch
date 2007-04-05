@@ -26,7 +26,7 @@ namespace com.tacitknowledge.util.migration
     /// A unit test for verifying core functionality of <code>MigrationProcess</code>.
     /// </summary>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: MigrationProcessTest.cs,v 1.8 2007/03/25 14:56:45 vgangantk Exp $</version>
+    /// <version>$Id: MigrationProcessTest.cs,v 1.9 2007/04/05 16:31:28 vgangantk Exp $</version>
     [TestFixture]
     public class MigrationProcessTest
     {
@@ -292,6 +292,69 @@ namespace com.tacitknowledge.util.migration
                 "patch0004_fourth_patch was supposed to be run");
             Assert.IsTrue(context.HasExecuted("patch0005_fifth_patch"),
                 "patch0005_fifth_patch was supposed to be run");
+        }
+
+        /// <summary>
+        /// Make sure that readonly patch process on an up-to-date system does nothing.
+        /// </summary>
+        [Test]
+        public void DoMigrationsFromLevelOneHundredReadOnly()
+        {
+            TestMigrationContext context = new TestMigrationContext();
+            MigrationProcess process = new MigrationProcess();
+            //process.AddPatchResourceAssembly(typeof(MigrationTask1).Assembly.CodeBase);
+            process.AddPatchResourceAssembly(typeof(MigrationTask1).Assembly.Location);
+            process.ReadOnly = true;
+            int count = process.DoMigrations(100, context);
+
+            Assert.AreEqual(0, count, "No migration tasks were supposed to be run on an up-to-date system in readonly mode");
+            Assert.AreEqual(0, context.ExecutionLog.Count, "The execution log should not have recorded anything in readonly mode");
+        }
+
+        /// <summary>
+        /// Make sure that readonly patch process flags an exception when it encounters unapplied patches.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(MigrationException))]
+        public void DoMigrationsFromLevelOneReadOnly()
+        {
+            TestMigrationContext context = new TestMigrationContext();
+            MigrationProcess process = new MigrationProcess();
+            //process.AddPatchResourceAssembly(typeof(MigrationTask1).Assembly.CodeBase);
+            process.AddPatchResourceAssembly(typeof(MigrationTask1).Assembly.Location);
+            process.ReadOnly = true;
+
+            int count = -1;
+
+            try
+            {
+                count = process.DoMigrations(1, context);
+            }
+            catch (MigrationException me)
+            {
+                Assert.AreEqual(-1, count, "No migration tasks were supposed to be run in readonly mode");
+                Assert.AreEqual(0, context.ExecutionLog.Count, "The execution log should not have recorded anything in readonly mode");
+                throw me;
+            }
+        }
+
+        /// <summary>
+        /// Make sure that readonly post-patch process on an up-to-date system does nothing.
+        /// </summary>
+        [Test]
+        public void DoPostPatchMigrationsReadOnly()
+        {
+            TestMigrationContext context = new TestMigrationContext();
+            FakeSqlMigrationProcess process = new FakeSqlMigrationProcess();
+            SqlScriptMigrationTaskSource taskSource = new SqlScriptMigrationTaskSource();
+            process.AddPostPatchResourceAssembly(typeof(MigrationTask1).Assembly.Location);
+            process.AddPostPatchResourceDirectory(Directory.GetCurrentDirectory() + "\\..\\..");
+            process.AddMigrationTaskSource(taskSource);
+            process.ReadOnly = true;
+            int count = process.DoPostPatchMigrations(context);
+
+            Assert.AreEqual(0, count, "No post-patch tasks were supposed to be run in readonly mode");
+            Assert.AreEqual(0, context.ExecutionLog.Count, "The execution log should not have recorded anything in readonly mode");
         }
     }
 }
