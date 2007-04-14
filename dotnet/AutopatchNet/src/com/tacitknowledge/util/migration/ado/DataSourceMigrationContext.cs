@@ -69,7 +69,7 @@ namespace com.tacitknowledge.util.migration.ado
 	/// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: DataSourceMigrationContext.cs,v 1.7 2007/03/25 20:33:38 vgangantk Exp $</version>
+    /// <version>$Id: DataSourceMigrationContext.cs,v 1.8 2007/04/14 08:29:46 vgangantk Exp $</version>
     public class DataSourceMigrationContext : IAdoMigrationContext, IDisposable
     {
         #region Member variables
@@ -124,7 +124,7 @@ namespace com.tacitknowledge.util.migration.ado
         /// <seealso cref="IAdoMigrationContext.DatabaseType"/>
         public virtual DatabaseType DatabaseType
         {
-            get { return databaseType;}
+            get { return databaseType; }
             set { databaseType = value; }
         }
 
