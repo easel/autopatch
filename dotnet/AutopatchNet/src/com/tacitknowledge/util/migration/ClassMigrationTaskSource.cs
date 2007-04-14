@@ -18,6 +18,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Remoting;
 using log4net;
+using com.tacitknowledge.util.migration.ado;
 #endregion
 
 namespace com.tacitknowledge.util.migration
@@ -52,7 +53,7 @@ namespace com.tacitknowledge.util.migration
     /// </summary>
     /// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: ClassMigrationTaskSource.cs,v 1.3 2007/03/21 20:52:59 vgangantk Exp $</version>
+    /// <version>$Id: ClassMigrationTaskSource.cs,v 1.4 2007/04/14 08:29:11 vgangantk Exp $</version>
     public class ClassMigrationTaskSource : IMigrationTaskSource
     {
         #region Member variables
@@ -163,13 +164,31 @@ namespace com.tacitknowledge.util.migration
                 if (assemblyTypes[i].IsPublic
                     && assemblyTypes[i].IsClass
                     && !assemblyTypes[i].IsAbstract
-                    && assemblyTypes[i].GetInterface(baseType.FullName) != null)
+                    && assemblyTypes[i].GetInterface(baseType.FullName) != null
+                    && TypeContainsDefaultConstructor(assemblyTypes[i]))
                 {
                     types.Add(assemblyTypes[i]);
                 }
             }
 
             return types;
+        }
+
+        /// <summary>
+        /// Checks to see if the supplied type has a default constructor.
+        /// </summary>
+        /// <param name="type">the type to inspect</param>
+        /// <returns>
+        /// <code>true</code> if the supplied type contains a default constructor, <code>false</code>
+        /// otherwise
+        /// </returns>
+        private bool TypeContainsDefaultConstructor(Type type)
+        {
+            Type[] types = new Type[0];
+            ConstructorInfo ci = type.GetConstructor(BindingFlags.Instance | BindingFlags.Public,
+                null, CallingConventions.HasThis, types, null);
+
+            return (ci == null ? false : true);
         }
         #endregion
     }
