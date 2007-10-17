@@ -48,14 +48,14 @@ import com.tacitknowledge.util.migration.MigrationException;
  *   ...
  *   &lt;listener&gt;
  *       &lt;listener-class&gt;
- *           com.tacitknowledge.util.migration.patchtable.WebAppMigrationLauncher
+ *           com.tacitknowledge.util.migration.jdbc.WebAppMigrationLauncher
  *       &lt;/listener-class&gt;
  *   &lt;/listener&gt;
  *   ...
  * </pre> 
  * 
  * @author  Scott Askew (scott@tacitknowledge.com)
- * @version $Id: WebAppMigrationLauncher.java,v 1.11 2007/03/08 02:02:56 mikehardy Exp $
+ * @version $Id: WebAppMigrationLauncher.java,v 1.12 2007/10/17 19:30:16 asoto Exp $
  * @see     com.tacitknowledge.util.migration.MigrationProcess
  */
 public class WebAppMigrationLauncher implements ServletContextListener
