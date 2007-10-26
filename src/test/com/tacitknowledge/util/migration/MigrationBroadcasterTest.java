@@ -10,9 +10,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id: MigrationBroadcasterTest.java,v 1.3 2007/03/08 01:48:30 mikehardy Exp $
+ * $Id: MigrationBroadcasterTest.java,v 1.4 2007/10/26 21:50:31 asoto Exp $
  */
 package com.tacitknowledge.util.migration;
+
+import java.util.Properties;
 
 import junit.framework.TestCase;
 
@@ -133,5 +135,12 @@ public class MigrationBroadcasterTest extends TestCase implements MigrationListe
                                 MigrationException e)
     {
         failed = true;
+    }
+
+    /**
+     * @see com.tacitknowledge.util.migration.MigrationListener#initialize(Properties)
+     */
+    public void initialize(String systemName, Properties properties) throws MigrationException
+    {
     }
 }
