@@ -26,7 +26,7 @@ import junit.framework.TestCase;
  * created
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: QueryTest.java,v 1.3 2004/11/05 20:01:51 scott Exp $
+ * @version $Id: QueryTest.java,v 1.1 2007/11/13 13:43:12 woffca Exp $
  */
 public class QueryTest extends TestCase
 {

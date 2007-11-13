@@ -23,7 +23,7 @@ import junit.framework.TestCase;
  * parsed.
  * 
  * @author Chris A. (chris@tacitknowledge.com)
- * @version $Id: NameParseTest.java,v 1.3 2005/02/21 21:44:21 scott Exp $
+ * @version $Id: NameParseTest.java,v 1.1 2007/11/13 13:43:11 woffca Exp $
  */
 public class NameParseTest extends TestCase
 {

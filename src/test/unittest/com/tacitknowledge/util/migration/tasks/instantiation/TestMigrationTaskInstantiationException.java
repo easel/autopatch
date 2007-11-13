@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id: TestMigrationTaskInstantiationException.java,v 1.2 2005/02/22 22:57:25 mike Exp $
+ * $Id: TestMigrationTaskInstantiationException.java,v 1.1 2007/11/13 13:43:19 woffca Exp $
  */
 package com.tacitknowledge.util.migration.tasks.instantiation;
 

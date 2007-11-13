@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id: ClassMigrationTaskSourceTest.java,v 1.3 2007/03/08 01:48:30 mikehardy Exp $
+ * $Id: ClassMigrationTaskSourceTest.java,v 1.1 2007/11/13 13:43:11 woffca Exp $
  */
 package com.tacitknowledge.util.migration;
 
