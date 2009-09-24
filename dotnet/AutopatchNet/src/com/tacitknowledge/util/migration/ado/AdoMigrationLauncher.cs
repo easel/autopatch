@@ -31,7 +31,7 @@ namespace com.tacitknowledge.util.migration.ado
 	/// </summary>
 	/// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: AdoMigrationLauncher.cs,v 1.5 2007/04/14 08:32:18 vgangantk Exp $</version>
+    /// <version>$Id: AdoMigrationLauncher.cs,v 1.6 2009/09/24 01:04:46 jrjackso Exp $</version>
     public class AdoMigrationLauncher
 	{
         #region Member variables
@@ -285,9 +285,9 @@ namespace com.tacitknowledge.util.migration.ado
 		/// <param name="context">
         /// the <code>IAdoMigrationContext</code> used for the migrations
 		/// </param>
-		public virtual void AddContext(IAdoMigrationContext context)
-		{
-			IPatchInfoStore patchTable = new PatchTable(context);
+        public virtual void AddContext(IAdoMigrationContext context)
+        {
+            IPatchInfoStore patchTable = new PatchTable(context);
 			log.Debug("Adding context " + context + " with patch table " + patchTable + " in launcher " + this);
 			contexts.Add(context, patchTable);
 		}
@@ -437,7 +437,7 @@ namespace com.tacitknowledge.util.migration.ado
 					piStore.LockPatchStore();
 					lockObtained = true;
 				}
-				catch (Exception e)
+				catch (Exception)
 				{
 					// this happens when someone woke up at the same time,
 					// raced us to the lock and won. We re-sleep and try again.

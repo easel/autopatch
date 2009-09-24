@@ -29,7 +29,7 @@ namespace com.tacitknowledge.util.migration.ado
 	/// </summary>
 	/// <author>Scott Askew (scott@tacitknowledge.com)</author>
     /// <author>Vladislav Gangan (vgangan@tacitknowledge.com)</author>
-    /// <version>$Id: SqlScriptMigrationTaskSource.cs,v 1.3 2007/03/22 21:12:44 vgangantk Exp $</version>
+    /// <version>$Id: SqlScriptMigrationTaskSource.cs,v 1.4 2009/09/24 01:04:46 jrjackso Exp $</version>
     public class SqlScriptMigrationTaskSource : IMigrationTaskSource
     {
         #region Member variables
@@ -38,7 +38,7 @@ namespace com.tacitknowledge.util.migration.ado
         /// <summary>
         /// The regular expression used to match SQL patch files.
         /// </summary>
-        private static readonly String SQL_PATCH_REGEX = "patch(\\d+)(_.+)?\\.sql";
+        private static readonly String SQL_PATCH_REGEX = "patch(\\d+)(_.+)?\\.sql$";
         #endregion
 
         #region Public methods

@@ -23,8 +23,8 @@ namespace com.tacitknowledge.util.migration
     /// <summary>
     /// The purpose of this class is to be called from the Global.asax file and initiate Migration tasks.
     /// </summary>
-    /// <version>$Id: AutoPatchEventListener.cs,v 1.3 2007/03/21 20:50:52 vgangantk Exp $</version>
-    class AutoPatchEventListener
+    /// <version>$Id: AutoPatchEventListener.cs,v 1.4 2009/09/24 01:04:46 jrjackso Exp $</version>
+    public class AutoPatchEventListener
     {
         #region Members
 
@@ -62,7 +62,7 @@ namespace com.tacitknowledge.util.migration
             /*
              * Load the class we're configured to use for managing migrations
              */
-            launcher = null;// System.Activator.CreateInstance(AutopatchNET, String(migrationConfig.Launcher));
+            launcher = System.Activator.CreateInstance(System.Type.GetType(migrationConfig.Launcher)) as AutoPatchLauncher;
 
             launcher.initialize();
 
