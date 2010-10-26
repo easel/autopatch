@@ -112,7 +112,19 @@ public class NonPooledDataSource implements DataSource
     {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MSG);
     }
-    
+
+    /** {@inheritDoc} */
+    public boolean isWrapperFor(Class<?> iface) throws UnsupportedOperationException 
+    {
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MSG);
+    }
+
+    /** {@inheritDoc} */
+    public <T> T unwrap(Class<T> iface) throws UnsupportedOperationException 
+    {
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MSG);
+    }
+
     /** 
      * Get the database URL
      * 
